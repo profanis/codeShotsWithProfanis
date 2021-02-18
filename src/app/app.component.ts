@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,32 +9,28 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn 
 export class AppComponent implements OnInit {
   myForm!: FormGroup
 
+  get colors(): FormArray {
+    return this.myForm.get('colors') as FormArray
+  }
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      password: this.fb.control(null),
-      confirmPassword: this.fb.control(null),
-    }, {
-      validators: this.controlValuesAreEqual('password', 'confirmPassword')
+      colors: this.fb.array([
+        this.fb.group({name: 'red'}),
+        this.fb.group({name: 'green'}),
+        this.fb.group({name: 'blue'}),
+      ]),
     })
   }
 
+  removeColor(index: number) {
+    this.colors.removeAt(index)
+  }
 
-  private controlValuesAreEqual(controlNameA: string, controlNameB: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const formGroup = control as FormGroup
-      const valueOfControlA = formGroup.get(controlNameA)?.value
-      const valueOfControlB = formGroup.get(controlNameB)?.value
-
-      if (valueOfControlA === valueOfControlB) {
-        return null
-      } else {
-        return { valuesDoNotMatch: true }
-      }
-
-
-    }
+  addColor() {
+    this.colors.push(this.fb.group({name: ''}))
   }
 
 }

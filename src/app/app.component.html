@@ -1,19 +1,32 @@
 <form [formGroup]="myForm" class="form-container">
-  <!-- Password field -->
-  <mat-form-field>
-    <input matInput placeholder="Type your password..." formControlName="password">
-  </mat-form-field>
-  <!-- /Password field -->
+
+  <ng-container formArrayName="colors">
 
 
-  <!-- Confirm password field -->
-  <mat-form-field>
-    <input matInput placeholder="Retype your password..." formControlName="confirmPassword">
-    <mat-hint align="start" *ngIf="myForm.errors?.valuesDoNotMatch">
-      <strong>Passwords do not match</strong>
-    </mat-hint>
-  </mat-form-field>
-  <!-- /Confirm password field -->
+    <ng-container *ngFor="let _ of colors.controls; let idx = index"
+                  [formGroupName]="idx">
 
+      <div class="form-inline mb-1">
+
+        <input class="form-control" formControlName="name">
+
+
+        <button class="btn btn-primary btn-sm ml-1" (click)="removeColor(idx)">x</button>
+
+
+      </div>
+
+    </ng-container>
+
+
+  </ng-container>
+
+  <button class="bn btn-primary" (click)="addColor()">Add new</button>
 
 </form>
+
+
+
+<pre>
+  {{myForm.value | json}}
+</pre>
