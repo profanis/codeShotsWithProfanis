@@ -1,32 +1,29 @@
-<form [formGroup]="myForm" class="form-container">
-
-  <ng-container formArrayName="colors">
+<form [formGroup]="myForm" class="form-container m-2">
 
 
-    <ng-container *ngFor="let _ of colors.controls; let idx = index"
-                  [formGroupName]="idx">
+  <!-- is useful field -->
+  <div class="mb-2">
+    <label class="form-label">Did you find this useful?</label>
 
-      <div class="form-inline mb-1">
-
-        <input class="form-control" formControlName="name">
-
-
-        <button class="btn btn-primary btn-sm ml-1" (click)="removeColor(idx)">x</button>
-
-
-      </div>
-
-    </ng-container>
+    <select class="form-control" formControlName="isUseful">
+      <option selected [ngValue]="null">Please select</option>
+      <option value="1">Yes</option>
+      <option value="2">No</option>
+      <option value="3">Other</option>
+    </select>
+  </div>
+  <!-- /is useful field -->
 
 
-  </ng-container>
+  <!-- Reason -->
+  <div class="mb-2">
+    <label class="form-label">Reason</label>
 
-  <button class="bn btn-primary" (click)="addColor()">Add new</button>
+    <input class="form-control" formControlName="reason">
+  </div>
+  <!-- /Reason -->
+
+
+  <button class="btn btn-primary" [disabled]="myForm.invalid">Submit</button>
 
 </form>
-
-
-
-<pre>
-  {{myForm.value | json}}
-</pre>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,28 +9,48 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class AppComponent implements OnInit {
   myForm!: FormGroup
 
-  get colors(): FormArray {
-    return this.myForm.get('colors') as FormArray
-  }
-
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      colors: this.fb.array([
-        this.fb.group({name: 'red'}),
-        this.fb.group({name: 'green'}),
-        this.fb.group({name: 'blue'}),
-      ]),
+      isUseful: this.fb.control(null, Validators.required),
+      reason: this.fb.control(null),
     })
-  }
 
-  removeColor(index: number) {
-    this.colors.removeAt(index)
-  }
 
-  addColor() {
-    this.colors.push(this.fb.group({name: ''}))
+
+    /*
+
+    If (value of fieldA  === 'something') {
+      setValidator on fieldB
+    } else {
+      clearValidators on fieldB
+    }
+
+    recalculate the value and validity of fieldB
+
+    */
+
+    const isUsefulField = this.myForm.get('isUseful')
+    const reasonField = this.myForm.get('reason')
+
+
+    isUsefulField?.valueChanges.subscribe(value => {
+      if (value === '3') {
+        reasonField?.setValidators(Validators.required)
+      } else {
+        reasonField?.clearValidators()
+      }
+
+      reasonField?.updateValueAndValidity()
+
+
+    })
+
+
+
+
+
   }
 
 }
