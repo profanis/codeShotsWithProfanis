@@ -2,5 +2,12 @@
   display: flex;
   flex-direction: column;
   width: 400px;
+}
 
+.form-wrapper {
+  display: flex;
+}
+
+mat-card {
+  margin: 16px;
 }

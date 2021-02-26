@@ -1,0 +1,35 @@
+<ng-container [formGroup]="form">
+  <mat-card class="form-container">
+    <mat-card-title>Address Details</mat-card-title>
+
+    <!-- Street -->
+    <mat-form-field>
+      <mat-label>Street</mat-label>
+      <input matInput placeholder="Ex. street name" formControlName="street" />
+    </mat-form-field>
+    <!-- /Street -->
+
+    <!-- Number -->
+    <mat-form-field>
+      <mat-label>Number</mat-label>
+      <input type="number" matInput placeholder="Ex. 12" formControlName="number" />
+    </mat-form-field>
+    <!-- /Number -->
+
+
+    <!-- Postal -->
+    <mat-form-field>
+      <mat-label>Postal</mat-label>
+      <input matInput placeholder="Ex. 12345" formControlName="postal" />
+    </mat-form-field>
+    <!-- /Postal -->
+
+
+    <!-- Company -->
+    <mat-form-field>
+      <mat-label>Company</mat-label>
+      <input matInput placeholder="Ex. Acme" formControlName="company" />
+    </mat-form-field>
+    <!-- /Company -->
+  </mat-card>
+</ng-container>

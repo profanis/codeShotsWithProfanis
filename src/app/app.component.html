@@ -1,29 +1,21 @@
-<form [formGroup]="myForm" class="form-container m-2">
+<div class="form-wrapper">
+  <ng-container [formGroup]="userForm">
+
+    <!-- Basic Info container -->
+   <app-basic-info formGroupName="basicInfo"></app-basic-info>
+    <!-- /Basic Info container -->
 
 
-  <!-- is useful field -->
-  <div class="mb-2">
-    <label class="form-label">Did you find this useful?</label>
+    <!-- address container -->
+    <app-address formGroupName="address"></app-address>
+    <!-- /address container -->
 
-    <select class="form-control" formControlName="isUseful">
-      <option selected [ngValue]="null">Please select</option>
-      <option value="1">Yes</option>
-      <option value="2">No</option>
-      <option value="3">Other</option>
-    </select>
-  </div>
-  <!-- /is useful field -->
+  </ng-container>
 
 
-  <!-- Reason -->
-  <div class="mb-2">
-    <label class="form-label">Reason</label>
-
-    <input class="form-control" formControlName="reason">
-  </div>
-  <!-- /Reason -->
+  <pre style="margin-top:50px; border: 1px solid red; width: fit-content">
+    {{userForm.value | json}}
+  </pre>
 
 
-  <button class="btn btn-primary" [disabled]="myForm.invalid">Submit</button>
-
-</form>
+</div>

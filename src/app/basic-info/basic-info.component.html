@@ -1,0 +1,33 @@
+<ng-container [formGroup]="form">
+  <mat-card class="form-container">
+    <mat-card-title>Basic Info</mat-card-title>
+
+    <!-- First name -->
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input matInput placeholder="Ex. Jane" formControlName="firstName" />
+    </mat-form-field>
+    <!-- /First name -->
+
+    <!-- Last name -->
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input matInput placeholder="Ex. Doe" formControlName="lastName" />
+    </mat-form-field>
+    <!-- /Last name -->
+
+    <!-- email -->
+    <mat-form-field>
+      <mat-label>e-mail</mat-label>
+      <input type="email" matInput placeholder="Ex. jane@doe.com" formControlName="email" />
+    </mat-form-field>
+    <!-- /email -->
+
+    <!-- age -->
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input type="number" matInput placeholder="Ex. 43" formControlName="age" />
+    </mat-form-field>
+    <!-- /age -->
+  </mat-card>
+</ng-container>
