@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { DynamicFormFieldModel } from './dynamic-form-field.model';
 
 @Component({
   selector: 'app-root',
@@ -8,48 +9,36 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   myForm!: FormGroup
+  dynamicFormFields!: DynamicFormFieldModel[]
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      isUseful: this.fb.control(null, Validators.required),
-      reason: this.fb.control(null),
+
+    this.myForm = this.fb.group({})
+
+    this.dynamicFormFields = [
+      {
+        id: 'dynamicSelect',
+        label: 'My Label Select',
+        type: 'select'
+      },
+      {
+        id: 'dynamicText',
+        label: 'My Label text',
+        type: 'text'
+      },
+      {
+        id: 'dynamicText2',
+        label: 'My Label text 2',
+        type: 'text'
+      },
+    ]
+
+
+    this.dynamicFormFields.forEach(formItem => {
+      this.myForm.addControl(formItem.id, this.fb.control(null))
     })
-
-
-
-    /*
-
-    If (value of fieldA  === 'something') {
-      setValidator on fieldB
-    } else {
-      clearValidators on fieldB
-    }
-
-    recalculate the value and validity of fieldB
-
-    */
-
-    const isUsefulField = this.myForm.get('isUseful')
-    const reasonField = this.myForm.get('reason')
-
-
-    isUsefulField?.valueChanges.subscribe(value => {
-      if (value === '3') {
-        reasonField?.setValidators(Validators.required)
-      } else {
-        reasonField?.clearValidators()
-      }
-
-      reasonField?.updateValueAndValidity()
-
-
-    })
-
-
-
-
 
   }
 
