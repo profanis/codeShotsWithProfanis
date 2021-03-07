@@ -1,16 +1,20 @@
 <ng-container [formGroup]="form">
-  <label>{{formItem.label}}</label>
-  <ng-container [ngSwitch]="formItem.type">
-    <!-- Input text -->
-    <input *ngSwitchCase="'text'" type="text" class="form-control" [formControlName]="formItem.id">
+  <div class="form-group">
+    <label>{{formItem.label}}</label>
+    <ng-container [ngSwitch]="formItem.type">
+      <!-- Input text -->
+      <input *ngSwitchCase="'text'" type="text" class="form-control" [formControlName]="formItem.id">
 
 
-    <!-- Select menu -->
-    <select *ngSwitchCase="'select'" class="form-control" [formControlName]="formItem.id">
-      <option selected [ngValue]="null">Please select</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-    </select>
-  </ng-container>
+      <!-- Select menu -->
+      <select *ngSwitchCase="'select'" class="form-control" [formControlName]="formItem.id">
+        <option selected [ngValue]="null">Please select</option>
+        <option [ngValue]="menuOption.key"
+                *ngFor="let menuOption of formItem.selectMenuOptions | keyvalue">
+                {{ menuOption.value }}
+        </option>
+      </select>
+    </ng-container>
+  </div>
+
 </ng-container>

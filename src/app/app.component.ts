@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicFormFieldModel } from './dynamic-form-field.model';
 
 @Component({
@@ -21,23 +21,33 @@ export class AppComponent implements OnInit {
       {
         id: 'dynamicSelect',
         label: 'My Label Select',
-        type: 'select'
+        type: 'select',
+        selectMenuOptions: {
+          'item1': "Item 1",
+          'item2': "Item 2",
+          'item3': "Item 3",
+        },
+        value: 'item3'
       },
       {
         id: 'dynamicText',
-        label: 'My Label text',
-        type: 'text'
+        label: 'Email',
+        type: 'text',
+        value: '',
+        validators: [Validators.required, Validators.email]
       },
       {
         id: 'dynamicText2',
         label: 'My Label text 2',
-        type: 'text'
+        type: 'text',
+        value: 'profanis2'
       },
     ]
 
 
     this.dynamicFormFields.forEach(formItem => {
-      this.myForm.addControl(formItem.id, this.fb.control(null))
+      const formControl = this.fb.control(formItem.value, formItem.validators)
+      this.myForm.addControl(formItem.id, formControl)
     })
 
   }
