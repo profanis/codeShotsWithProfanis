@@ -5,8 +5,11 @@ import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from '@angular/material/icon';
 // Imports of used components
 import { MatInputModule } from "@angular/material/input";
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
 // For components using angular-animations
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 
 
 
@@ -18,7 +21,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    MatToolbarModule
   ],
   exports: [MatInputModule, MatCardModule, MatButtonModule, MatIconModule]
 })

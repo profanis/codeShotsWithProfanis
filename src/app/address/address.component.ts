@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-address',
@@ -7,13 +7,16 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
   styleUrls: ['./address.component.scss']
 })
 export class AddressComponent implements OnInit {
-  @Input() formGroupName!: string
-
   form!: FormGroup
-  constructor(private rootFormGroup: FormGroupDirective) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.form = this.rootFormGroup.control.get(this.formGroupName) as FormGroup
+    this.form = this.fb.group({
+      street: [],
+      number: [],
+      postal: [],
+      company: []
+    });
   }
 
 }
