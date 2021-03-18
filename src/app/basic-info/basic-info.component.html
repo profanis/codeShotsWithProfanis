@@ -1,4 +1,4 @@
-<ng-container [formGroup]="form">
+<form (ngSubmit)="submitForm()" [formGroup]="form">
   <mat-card class="form-container">
     <mat-card-title>Basic Info</mat-card-title>
 
@@ -19,15 +19,29 @@
     <!-- email -->
     <mat-form-field>
       <mat-label>e-mail</mat-label>
-      <input type="email" matInput placeholder="Ex. jane@doe.com" formControlName="email" />
+      <input
+        type="email"
+        matInput
+        placeholder="Ex. jane@doe.com"
+        formControlName="email"
+      />
     </mat-form-field>
     <!-- /email -->
 
     <!-- age -->
     <mat-form-field>
       <mat-label>Age</mat-label>
-      <input type="number" matInput placeholder="Ex. 43" formControlName="age" />
+      <input
+        type="number"
+        matInput
+        placeholder="Ex. 43"
+        formControlName="age"
+      />
     </mat-form-field>
     <!-- /age -->
+
+    <div>
+      <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
   </mat-card>
-</ng-container>
+</form>
