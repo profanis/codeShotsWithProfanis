@@ -1,15 +1,44 @@
-<div [formGroup]="myForm" class="form-container">
-  <ng-container *ngFor="let formItem of dynamicFormFields">
-    <app-dynamic-form-field [formItem]="formItem"></app-dynamic-form-field>
-  </ng-container>
+<div [formGroup]="myForm" class="form-container m-5">
+  <app-custom-input
+    [label]="'Input 1'"
+    formControlName="inputOne"
+  ></app-custom-input>
 
+  <app-custom-input
+    [label]="'Input 2'"
+    formControlName="inputTwo"
+  ></app-custom-input>
 
+  <app-custom-input
+    [label]="'Input 3'"
+    formControlName="inputThree"
+  ></app-custom-input>
 
-  <pre>
-    {{myForm.value | json}}
-  </pre>
+  <app-custom-input
+    [label]="'Input 4'"
+    formControlName="inputFour"
+  ></app-custom-input>
+  <!-- <div class="form-group">
+    <label>Input 1</label>
+    <input type="text" class="form-control" formControlName="inputOne" />
+  </div>
 
-  isValid: {{myForm.valid}}
+  <div class="form-group">
+    <label>Input 2</label>
+    <input type="text" class="form-control" formControlName="inputTwo" />
+  </div>
 
+  <div class="form-group">
+    <label>Input 3</label>
+    <input type="text" class="form-control" formControlName="inputThree" />
+  </div>
+
+  <div class="form-group">
+    <label>Input 4</label>
+    <input type="text" class="form-control" formControlName="inputFour" />
+  </div> -->
 </div>
 
+<pre>
+  {{ myForm.value | json }}
+</pre>
