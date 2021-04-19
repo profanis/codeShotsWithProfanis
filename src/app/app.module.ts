@@ -1,22 +1,44 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  iconsPathFactory,
+  TuiButtonModule,
+  TuiLinkModule,
+  TuiRootModule,
+  TUI_ICONS_PATH,
+} from '@taiga-ui/core';
+import {
+  TuiCheckboxLabeledModule,
+  TuiFieldErrorModule,
+  TuiInputModule,
+  TuiInputPasswordModule,
+} from '@taiga-ui/kit';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularMaterialModule } from './angular-material/angular-material.module';
-
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    TuiRootModule,
+    TuiInputModule,
+    TuiInputPasswordModule,
+    TuiCheckboxLabeledModule,
+    TuiLinkModule,
+    TuiButtonModule,
+    TuiFieldErrorModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: TUI_ICONS_PATH,
+      useValue: iconsPathFactory('assets/taiga-ui/icons/'),
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
