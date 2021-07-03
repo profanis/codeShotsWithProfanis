@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
-import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +14,17 @@ export class LoginComponent {
     password: new FormControl(null, Validators.required),
   });
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   submitForm() {
     if (this.form.invalid) {
       return;
     }
 
-    this.apiService
+    this.authService
       .login(this.form.get('username')?.value, this.form.get('password')?.value)
-      .pipe(
-        tap((response: any) => {
-          this.router.navigate(['/dashboard']);
-        })
-      )
-      .subscribe();
+      .subscribe((response) => {
+        this.router.navigate(['/dashboard']);
+      });
   }
 }
