@@ -5,14 +5,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthInterceptorProvider } from './auth.interceptor';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { FakeBackendProvider } from './fake-backend.interceptor';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ProductsComponent } from './products/products.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent, NavigationComponent, ProductsComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    NavigationComponent,
+    ProductsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,7 +27,7 @@ import { ProductsComponent } from './products/products.component';
     AngularMaterialModule,
     HttpClientModule,
   ],
-  providers: [FakeBackendProvider],
+  providers: [AuthInterceptorProvider, FakeBackendProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

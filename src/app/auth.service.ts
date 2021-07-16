@@ -8,18 +8,22 @@ import { ApiService } from './api.service';
 })
 export class AuthService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  private readonly TOKEN_NAME = 'profanis_auth';
   isLoggedIn$ = this._isLoggedIn$.asObservable();
 
+  get token(): any {
+    return localStorage.getItem(this.TOKEN_NAME);
+  }
+
   constructor(private apiService: ApiService) {
-    const token = localStorage.getItem('profanis_auth');
-    this._isLoggedIn$.next(!!token);
+    this._isLoggedIn$.next(!!this.token);
   }
 
   login(username: string, password: string) {
     return this.apiService.login(username, password).pipe(
       tap((response: any) => {
         this._isLoggedIn$.next(true);
-        localStorage.setItem('profanis_auth', response.token);
+        localStorage.setItem(this.TOKEN_NAME, response.token);
       })
     );
   }
