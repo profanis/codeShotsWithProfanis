@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HasRoleGuard } from './has-role.guard';
 import { IsAuthenticatedGuard } from './is-authenticated.guard';
 import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
@@ -14,7 +15,10 @@ const routes: Routes = [
   {
     path: 'products',
     component: ProductsComponent,
-    canActivate: [IsAuthenticatedGuard],
+    canActivate: [IsAuthenticatedGuard, HasRoleGuard],
+    data: {
+      role: 'Admin',
+    },
   },
   {
     path: 'login',
