@@ -12,9 +12,9 @@ declare namespace Cypress {
 function login(username: string, password: string): void {
   cy.visit('/');
   cy.url().should('includes', 'login');
-  cy.get('[formControlName="username"]').type(username);
-  cy.get('[formControlName="password"]').type(password);
-  cy.get('button').click();
+  cy.get('[data-cy="login-username-field"]').type(username);
+  cy.get('[data-cy="login-password-field"]').type(password);
+  cy.get('[data-cy="login-submit-button"]').click();
 }
 //
 // NOTE: You can use it like so:

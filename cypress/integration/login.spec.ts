@@ -2,8 +2,8 @@ describe('Login', () => {
   it('Should not login if the form is invalid', () => {
     cy.visit('/');
     cy.url().should('includes', 'login');
-    cy.get('[formControlName="username"]').type('profanis');
-    cy.get('button').click();
+    cy.get('[data-cy="login-username-field"]').type('profanis');
+    cy.get('[data-cy="login-submit-button"]').click();
     cy.url().should('not.include', 'dashboard');
   });
 
