@@ -16,8 +16,7 @@
         "./node_modules/@angular/*"
       ],
       "my-lib": [
-        "../client1/dist/my-lib/my-lib",
-        "../client1/dist/my-lib"
+        "./node_modules/profanis-lib",
       ]
     },
     "experimentalDecorators": true,
