@@ -13,7 +13,7 @@
     "downlevelIteration": true,
     "paths": {
       "my-lib": [
-        "./node_modules/profanis-lib",
+        "./node_modules/code-shots-with-profanis-lib",
       ]
     },
     "experimentalDecorators": true,

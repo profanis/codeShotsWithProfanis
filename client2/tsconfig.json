@@ -12,11 +12,8 @@
     "declaration": false,
     "downlevelIteration": true,
     "paths": {
-      "@angular/*": [
-        "./node_modules/@angular/*"
-      ],
       "my-lib": [
-        "./node_modules/profanis-lib",
+        "./node_modules/code-shots-with-profanis-lib",
       ]
     },
     "experimentalDecorators": true,
