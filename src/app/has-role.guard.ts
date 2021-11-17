@@ -3,7 +3,7 @@ import {
   ActivatedRouteSnapshot,
   CanActivate,
   RouterStateSnapshot,
-  UrlTree,
+  UrlTree
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -22,7 +22,7 @@ export class HasRoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const isAuthorized = this.authService.user.roles.includes(route.data.role);
+    const isAuthorized = this.authService.user?.roles.includes(route.data.role);
 
     if (!isAuthorized) {
       // redirect
@@ -30,6 +30,6 @@ export class HasRoleGuard implements CanActivate {
       window.alert('you are not authorized');
     }
 
-    return isAuthorized;
+    return isAuthorized || false;
   }
 }

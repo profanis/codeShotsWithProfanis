@@ -11,7 +11,7 @@ export class AuthService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
   private readonly TOKEN_NAME = 'profanis_auth';
   isLoggedIn$ = this._isLoggedIn$.asObservable();
-  user!: UserModel;
+  user: UserModel | null;
 
   get token(): any {
     return localStorage.getItem(this.TOKEN_NAME);
@@ -32,7 +32,10 @@ export class AuthService {
     );
   }
 
-  private getUser(token: string): UserModel {
+  private getUser(token: string): UserModel | null {
+    if (!token) {
+      return null
+    }
     return JSON.parse(atob(token.split('.')[1])) as UserModel;
   }
 }
