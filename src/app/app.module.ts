@@ -11,6 +11,7 @@ import { FakeBackendProvider } from './fake-backend.interceptor';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ProductsComponent } from './products/products.component';
+import { HasRoleDirective } from './has-role.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProductsComponent } from './products/products.component';
     DashboardComponent,
     NavigationComponent,
     ProductsComponent,
+    HasRoleDirective,
   ],
   imports: [
     BrowserModule,

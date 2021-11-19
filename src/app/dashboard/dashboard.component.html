@@ -1,1 +1,18 @@
-<p>dashboard works!</p>
+<mat-card *appHasRole="'Admin'">
+  <mat-card-title>Admin area</mat-card-title>
+  <mat-card-subtitle>Show this content only if the user has <strong>Admin</strong> role</mat-card-subtitle>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card *appHasRole="'Guest'">
+  <mat-card-title>Guest area</mat-card-title>
+  <mat-card-subtitle>Show this content only if the user has <strong>Guest</strong> role</mat-card-subtitle>
+</mat-card>
+
+<mat-divider></mat-divider>
+
+<mat-card *appHasRole="'User'">
+  <mat-card-title>User area</mat-card-title>
+  <mat-card-subtitle>Show this content only if the user has <strong>User</strong> role</mat-card-subtitle>
+</mat-card>

@@ -22,6 +22,10 @@ export class AuthService {
     this.user = this.getUser(this.token);
   }
 
+  hasRole(role: string): boolean {
+    return this.user?.roles.includes(role) || false;
+  }
+
   login(username: string, password: string) {
     return this.apiService.login(username, password).pipe(
       tap((response: any) => {

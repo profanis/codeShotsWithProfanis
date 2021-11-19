@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 // Imports of used components
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatMenuModule,
     MatTableModule,
+    MatDividerModule
   ],
   exports: [
     MatInputModule,
@@ -32,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatMenuModule,
     MatTableModule,
+    MatDividerModule
   ],
 })
 export class AngularMaterialModule {}
