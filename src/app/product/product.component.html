@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-title> Product name </mat-card-title>
+  <mat-card-content>
+    <div>This is the product description</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      [disabled]="isButtonClicked"
+      mat-raised-button
+      color="primary"
+      (click)="buyProduct()"
+    >
+      Buy
+    </button>
+  </mat-card-actions>
+</mat-card>
