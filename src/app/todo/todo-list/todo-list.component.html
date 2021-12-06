@@ -1,10 +1,30 @@
 <mat-card>
   <mat-card-title>Todo Items</mat-card-title>
+  <!-- Add new item -->
   <div class="flex items-center">
     <mat-form-field class="mr-4" appearance="fill">
       <mat-label>Item name</mat-label>
-      <input matInput autocomplete="off" />
+      <input matInput autocomplete="off" [(ngModel)]="newItemName" />
     </mat-form-field>
-    <button type="button" mat-raised-button color="primary">Add</button>
+    <button type="button" mat-raised-button color="primary" (click)="addItem()">
+      Add
+    </button>
   </div>
+  <!-- /Add new item -->
+
+  <!-- Todo items -->
+  <mat-list role="list">
+    <mat-list-item
+      [class.is-done]="item.isDone"
+      role="listitem"
+      *ngFor="let item of items; trackBy: trackById"
+    >
+      <div class="flex items-center">
+        <mat-checkbox [checked]="item.isDone" (change)="toggleItem(item)">
+          {{ item.title }}
+        </mat-checkbox>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <!-- /Todo items -->
 </mat-card>
