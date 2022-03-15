@@ -8,7 +8,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
-import { TodoState } from './todo-state';
+import { TodoState } from './store/todo-state';
 import { NgxsModule } from '@ngxs/store';
 import { RouterModule } from '@angular/router';
 

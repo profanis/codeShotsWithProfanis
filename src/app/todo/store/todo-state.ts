@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Actions, State, StateContext } from '@ngxs/store';
 import { AddItemAction, ToggleItemAction } from './todo-actions';
-import { TodoModel } from './types/todo';
+import { TodoModel } from '../types/todo';
 
 export interface TodoStateModel {
   items: TodoModel[];

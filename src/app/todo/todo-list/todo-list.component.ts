@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { AddItemAction, ToggleItemAction } from '../todo-actions';
-import { TodoSelectors } from '../todo-selectors';
+import { AddItemAction, ToggleItemAction } from '../store/todo-actions';
+import { TodoSelectors } from '../store/todo-selectors';
+import { TodoFacade } from '../todo-facade';
 import { TodoModel } from '../types/todo';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
+  providers: [TodoFacade],
 })
 export class TodoListComponent {
-  @Select(TodoSelectors.todoItems) todoItems$!: Observable<TodoModel[]>;
-
   newItemName!: string;
   items: TodoModel[] = [...new Array(10)].map((_, index) => ({
     id: index + 1,
@@ -21,18 +21,18 @@ export class TodoListComponent {
     title: `Todo ${index + 1}`,
   }));
 
-  constructor(private store: Store) {}
+  constructor(public todoFacade: TodoFacade) {}
 
   trackById(index: number, item: TodoModel): number {
     return item.id;
   }
 
   toggleItem(todoItem: TodoModel) {
-    this.store.dispatch(new ToggleItemAction(todoItem.id));
+    this.todoFacade.toggleItem(todoItem);
   }
 
   addItem() {
-    this.store.dispatch(new AddItemAction(this.newItemName));
+    this.todoFacade.addItem(this.newItemName);
     this.newItemName = '';
   }
 }

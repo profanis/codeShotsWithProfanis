@@ -17,7 +17,7 @@
     <mat-list-item
       [class.is-done]="item.isDone"
       role="listitem"
-      *ngFor="let item of todoItems$ | async; trackBy: trackById"
+      *ngFor="let item of todoFacade.todoItems$ | async; trackBy: trackById"
     >
       <div class="flex items-center">
         <mat-checkbox [checked]="item.isDone" (change)="toggleItem(item)">

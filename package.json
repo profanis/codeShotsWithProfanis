@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~13.0.3",
     "@angular/platform-browser-dynamic": "~13.0.3",
     "@angular/router": "~13.0.3",
+    "@ngxs-labs/dispatch-decorator": "^4.0.2",
     "@ngxs/store": "^3.7.3",
     "bootstrap": "^4.6.0",
     "rxjs": "~6.6.0",
