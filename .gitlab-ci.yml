@@ -9,7 +9,6 @@ install:
   script:
     - npm ci
 
-
 unit test:
   stage: test
   before_script:
