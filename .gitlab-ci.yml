@@ -1,4 +1,4 @@
-image: node:16.14.2-stretch
+image: node:16.14.2-bullseye
 
 stages:
   - setup
