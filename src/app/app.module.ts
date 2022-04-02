@@ -14,7 +14,7 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
