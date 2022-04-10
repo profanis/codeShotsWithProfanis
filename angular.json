@@ -115,6 +115,9 @@
               "devServerTarget": "profanis-yt:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@jefiozie/ngx-aws-deploy:deploy"
         }
       }
     }
