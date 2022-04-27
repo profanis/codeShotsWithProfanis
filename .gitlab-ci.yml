@@ -9,6 +9,11 @@ stages:
   - test
   - deploy
 
+test_variable:
+  stage: test
+  script:
+    - echo "$AWS_ACCESS_KEY_ID"
+
 install:
   stage: setup
   script:
