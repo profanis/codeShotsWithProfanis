@@ -21,7 +21,10 @@ unit test:
     - npm ci
     - npm run test -- --no-watch --browsers=ChromeHeadlessCI
 
-deployment:
+deploy:
   stage: deploy
+  before_script:
+    - npm ci
   script:
-    - npx cross-env NG_DEPLOY_AWS_ACCESS_KEY_ID=AKIAQ6CPJJJOG56DIVMW NG_DEPLOY_AWS_SECRET_ACCESS_KEY=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  NG_DEPLOY_AWS_BUCKET=profanis-my-first-angular-app NG_DEPLOY_AWS_REGION=eu-central-1 ng deploy
+    - npx cross-env NG_DEPLOY_AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID NG_DEPLOY_AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY NG_DEPLOY_AWS_BUCKET=profanis-my-first-angular-app NG_DEPLOY_AWS_REGION=eu-central-1 ng deploy
+

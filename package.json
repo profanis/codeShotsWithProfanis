@@ -30,6 +30,7 @@
     "@angular-devkit/build-angular": "~13.2.4",
     "@angular/cli": "~13.2.4",
     "@angular/compiler-cli": "~13.2.3",
+    "@jefiozie/ngx-aws-deploy": "^4.1.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
