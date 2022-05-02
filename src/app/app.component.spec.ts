@@ -27,7 +27,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.content span').textContent).toContain(
-      'profanis-yt app is running and deployed via gitlab!'
+      'profanis-yt app is running!'
     );
   });
 });
