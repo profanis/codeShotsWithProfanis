@@ -1,0 +1,39 @@
+<div class="container">
+  <form [formGroup]="form">
+    <mat-form-field class="f-width" appearance="fill">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field class="f-width" appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+
+    <mat-form-field class="f-width" appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+
+    <mat-form-field class="f-width" appearance="fill">
+      <mat-label>Age</mat-label>
+      <input matInput formControlName="age" />
+    </mat-form-field>
+
+    <button
+      type="button"
+      mat-raised-button
+      color="primary"
+      class="mr-16"
+      (click)="loadFromHttp()"
+    >
+      Load data from HTTP
+    </button>
+
+    <button type="button" mat-raised-button color="primary" (click)="reset()">
+      Reset
+    </button>
+
+    {{ form.value | json }}
+  </form>
+</div>

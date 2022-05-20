@@ -11,25 +11,25 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~13.2.3",
+    "@angular/animations": "~14.0.0-rc.0",
     "@angular/cdk": "^13.2.3",
-    "@angular/common": "~13.2.3",
-    "@angular/compiler": "~13.2.3",
-    "@angular/core": "~13.2.3",
-    "@angular/forms": "~13.2.3",
+    "@angular/common": "~14.0.0-rc.0",
+    "@angular/compiler": "~14.0.0-rc.0",
+    "@angular/core": "~14.0.0-rc.0",
+    "@angular/forms": "~14.0.0-rc.0",
     "@angular/material": "^13.2.3",
-    "@angular/platform-browser": "~13.2.3",
-    "@angular/platform-browser-dynamic": "~13.2.3",
-    "@angular/router": "~13.2.3",
+    "@angular/platform-browser": "~14.0.0-rc.0",
+    "@angular/platform-browser-dynamic": "~14.0.0-rc.0",
+    "@angular/router": "~14.0.0-rc.0",
     "bootstrap": "^4.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.2.4",
-    "@angular/cli": "~13.2.4",
-    "@angular/compiler-cli": "~13.2.3",
+    "@angular-devkit/build-angular": "~14.0.0-rc.0",
+    "@angular/cli": "~14.0.0-rc.0",
+    "@angular/compiler-cli": "~14.0.0-rc.0",
     "@jefiozie/ngx-aws-deploy": "^4.1.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
@@ -43,6 +43,6 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.4.4"
+    "typescript": "~4.6.4"
   }
 }
