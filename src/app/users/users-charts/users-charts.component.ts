@@ -1,9 +1,16 @@
 import { Component } from '@angular/core';
+import { ChartModule } from 'primeng/chart';
+import { UserDetailsComponent } from '../user-details/user-details.component';
 
 @Component({
   selector: 'app-users-charts',
-  template: ` <p-chart type="bar" [data]="basicData"></p-chart> `,
+  template: `
+    <app-user-details></app-user-details>
+    <p-chart type="bar" [data]="basicData"></p-chart>
+  `,
   styleUrls: ['./users-charts.component.scss'],
+  standalone: true,
+  imports: [ChartModule, UserDetailsComponent],
 })
 export class UsersChartsComponent {
   basicData: any;

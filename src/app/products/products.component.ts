@@ -4,5 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-products',
   template: `<p>products works!</p> `,
   styleUrls: ['./products.component.scss'],
+  standalone: true,
 })
 export class ProductsComponent {}
