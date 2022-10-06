@@ -1,0 +1,24 @@
+<mat-card>
+  <div class="product-card-container">
+    <img
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+      width="150"
+      style="aspect-ratio: 1/1; margin-right: 20px"
+    />
+    <div>
+      <mat-card-title>{{ product?.title }}</mat-card-title>
+      <mat-card-subtitle>{{ product?.subTitle }}</mat-card-subtitle>
+      <div class="star-rating">*****</div>
+      <div class="price">{{ product?.price | currency }}</div>
+      <!-- Actions -->
+      <button mat-raised-button (click)="decreaseHandler()">-</button>
+      <button mat-raised-button (click)="increaseHandler()">+</button>
+      <!-- /Actions -->
+    </div>
+  </div>
+
+  <mat-card-content>
+    {{ product?.description }}
+  </mat-card-content>
+</mat-card>

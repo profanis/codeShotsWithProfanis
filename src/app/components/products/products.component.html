@@ -1,0 +1,10 @@
+<app-basket #basket></app-basket>
+<button (click)="basket.buyAll()">Buy all</button>
+<button (click)="basket.clearAll()">Clear all</button>
+<hr />
+<app-product-card
+  (decrease)="myDecreaseHandler($event)"
+  (increase)="myIncreaseHandler($event)"
+  [product]="p"
+  *ngFor="let p of products"
+></app-product-card>
