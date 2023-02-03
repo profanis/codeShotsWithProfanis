@@ -8,18 +8,6 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: 'app-card-footer',
-  standalone: true,
-})
-export class CardFooterDirective {}
-
-@Directive({
-  selector: 'app-card-header',
-  standalone: true,
-})
-export class CardHeaderDirective {}
-
-@Directive({
   selector: '[appCardMainContent]',
   standalone: true,
 })
@@ -33,7 +21,6 @@ export class CardContentDirective {
   imports: [CommonModule],
   template: `
     <!-- https://codepen.io/mcraiganthony/pen/NxGxqm -->
-    <ng-content select="app-card-header"></ng-content>
     <div class="card">
       <div class="card__image card__image--fence"></div>
       <div class="card__content">
@@ -42,24 +29,32 @@ export class CardContentDirective {
         <!-- Content -->
         <div class="card__content">
           <ng-container
-            *ngIf="carMainContent"
-            [ngTemplateOutlet]="carMainContent.template"
+            [ngTemplateOutlet]="carMainContent || defaultTemplate"
+            [ngTemplateOutletContext]="{ $implicit: context }"
           ></ng-container>
         </div>
         <!-- /Content -->
 
-        <!-- Footer -->
-        <ng-content
-          *ngIf="carMainContent"
-          select="app-card-footer"
-        ></ng-content>
-        <!-- /Footer -->
+        <button class="btn btn--block card__btn">Button</button>
       </div>
     </div>
+
+    <ng-template #defaultTemplate let-user>
+      <p>User name: {{ user.username }}</p>
+      <p>First Name: {{ user.firstName }}</p>
+      <p>Last Name: {{ user.lastName }}</p>
+    </ng-template>
   `,
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent {
   @Input() title?: string;
-  @ContentChild(CardContentDirective) carMainContent?: CardContentDirective;
+  @ContentChild(CardContentDirective, { read: TemplateRef })
+  carMainContent?: TemplateRef<any>;
+
+  context = {
+    username: 'profanis',
+    firstName: 'Fanis',
+    lastName: 'Prodromou',
+  };
 }

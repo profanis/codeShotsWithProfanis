@@ -1,26 +1,48 @@
+<!-- <div *ngIf="true; else elseContent">Rendered element</div> -->
+<!-- <ng-template [ngIf]="false" [ngIfElse]="elseContent">
+  <div>Rendered element</div>
+</ng-template> -->
+
+<!-- <ng-template #tmpla let-user>
+  <p>User name: {{ user.username }}</p>
+  <p>First Name: {{ user.firstName }}</p>
+  <p>Last Name: {{ user.lastName }}</p>
+</ng-template>
+
+<ng-template #tmplb let-user>
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>First name</th>
+      <th>Last name</th>
+    </tr>
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+    </tr>
+  </table>
+</ng-template>
+
+<ng-template
+  [ngTemplateOutlet]="tmplb"
+  [ngTemplateOutletContext]="{ $implicit: context }"
+></ng-template> -->
+
+<!-- <div *appHasPermissions="let myCanRead = canRead; let myCanWrite = canWrite">
+  <p>canRead: {{ myCanRead }}</p>
+  <p>canWrite: {{ myCanWrite }}</p>
+</div>
+
+<ng-template
+  [appHasPermissions]
+  let-myCanRead="canRead"
+  let-myCanWrite="canWrite"
+>
+  <p>canRead: {{ myCanRead }}</p>
+  <p>canWrite: {{ myCanWrite }}</p>
+</ng-template> -->
+
 <div class="card-grid">
-  <app-card title="FLEX">
-    <div *appCardMainContent>
-      This is the shorthand for flex-grow, flex-shrink and flex-basis combined.
-      The second and third parameters (flex-shrink and flex-basis) are optional.
-      Default is 0 1 auto.
-    </div>
-
-    <app-card-footer>
-      <button class="btn btn--block card__btn">Button</button>
-    </app-card-footer>
-
-    <app-card-header> Header Content </app-card-header>
-  </app-card>
-
-  <app-card title="FLEX 2">
-    <div *appCardMainContent>This is the shorthand.</div>
-
-    <app-card-footer>
-      <button class="btn btn--block card__btn">Button</button>
-      <button class="btn btn--block card__btn">Button 2</button>
-    </app-card-footer>
-
-    <app-card-header> Header Content 2 </app-card-header>
-  </app-card>
+  <app-card title="FLEX"> </app-card>
 </div>

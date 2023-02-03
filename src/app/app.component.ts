@@ -1,10 +1,10 @@
+import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   CardComponent,
   CardContentDirective,
-  CardFooterDirective,
-  CardHeaderDirective,
 } from './components/card/card.component';
+import { HasPermissionsDirective } from './directives/has-permissions.directive';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,17 @@ import {
   standalone: true,
   imports: [
     CardComponent,
-    CardFooterDirective,
-    CardHeaderDirective,
     CardContentDirective,
+    NgIf,
+    CommonModule,
+    HasPermissionsDirective,
   ],
 })
 export class AppComponent {
   title = 'Code Shots with Profanis - please subscribe :)';
+  context = {
+    username: 'profanis',
+    firstName: 'Fanis',
+    lastName: 'Prodromou',
+  };
 }
