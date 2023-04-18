@@ -6,6 +6,6 @@ import { Observable, of } from 'rxjs';
 })
 export class AuthService {
   isLoggedIn$(): Observable<boolean> {
-    return of(false);
+    return of(true);
   }
 }
