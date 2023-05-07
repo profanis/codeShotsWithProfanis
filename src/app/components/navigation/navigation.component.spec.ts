@@ -1,30 +1,33 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterLink, provideRouter } from '@angular/router';
 import { NavigationComponent } from './navigation.component';
 
 describe('NavigationComponent', () => {
+  let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavigationComponent, RouterTestingModule],
+      imports: [NavigationComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
+
     fixture = TestBed.createComponent(NavigationComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the app', () => {
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
-  it('should have three menu items', () => {
-    const links = fixture.debugElement.queryAll(By.directive(RouterLink));
-    const routerLinks = links.map((it) => it.injector.get(RouterLink));
-    fixture.detectChanges();
-    expect(routerLinks.length).toBe(2);
-    expect(routerLinks[0].href).toBe('/');
-    expect(routerLinks[1].href).toBe('/products');
+  it('should have the correct menu items', () => {
+    const linkItems = fixture.debugElement.queryAll(By.directive(RouterLink));
+    const navItems = linkItems.map((it) => it.injector.get(RouterLink));
+
+    expect(navItems.length).toBe(2);
+    expect(navItems[0].href).toBe('/');
+    expect(navItems[1].href).toBe('/products');
   });
 });

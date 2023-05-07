@@ -1,16 +1,10 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
-import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Router, provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
+import { ProductsComponent } from '../products.component';
 import { ProductDetailComponent } from './product-detail.component';
-
-@Component({
-  selector: '',
-  template: '',
-})
-export class TestComponent {}
 
 /**
  * Routed Component
@@ -30,43 +24,47 @@ describe('ProductDetailComponent', () => {
           },
           {
             path: 'products',
-            component: TestComponent,
+            component: ProductsComponent,
           },
         ]),
       ],
     }).compileComponents();
+
+    // fixture = TestBed.createComponent(ProductDetailComponent);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
     harness = await RouterTestingHarness.create();
   });
 
   it('should have the correct productId from the route', async () => {
-    component = await harness.navigateByUrl(
-      `/products/1`,
+    const component = await harness.navigateByUrl(
+      'products/1',
       ProductDetailComponent
     );
 
-    expect(component.productId.toString()).toEqual('1');
+    expect(component.productId.toString()).toBe('1');
   });
 
   it('should navigate back to products list if the provided productId is wrong', async () => {
-    await harness.navigateByUrl(`/products/11`);
+    await harness.navigateByUrl('products/11');
 
-    expect(TestBed.inject(Router).url).toEqual('/products');
+    expect(TestBed.inject(Router).url).toBe('/products');
   });
 
   it('should click back to products and go to the list', fakeAsync(async () => {
-    component = await harness.navigateByUrl(
-      `/products/1`,
+    const component = await harness.navigateByUrl(
+      'products/1',
       ProductDetailComponent
     );
 
     const element = harness.routeDebugElement?.query(
-      By.css('[data-test="back-to-products"]')
+      By.css('[data-test="back-to-products"')
     );
 
     element?.triggerEventHandler('click');
     tick();
 
-    expect(component.productId.toString()).toEqual('1');
-    expect(TestBed.inject(Router).url).toEqual('/products');
+    expect(component.productId.toString()).toBe('1');
+    expect(TestBed.inject(Router).url).toBe('/products');
   }));
 });
