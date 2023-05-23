@@ -1,0 +1,13 @@
+.page-container {
+  margin: 50px;
+
+  &--form-field {
+    width: 400px;
+  }
+
+  &--spinner {
+    width: 20px !important;
+    height: 20px !important;
+    margin-right: 16px;
+  }
+}

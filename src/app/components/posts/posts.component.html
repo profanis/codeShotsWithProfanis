@@ -1,0 +1,25 @@
+<div class="page-container">
+  <mat-form-field class="page-container--form-field">
+    <mat-label>Enter User Id (Empty will fetch all)</mat-label>
+    <input
+      matInput
+      type="text"
+      [ngModel]="userId()"
+      [matAutocomplete]="autoComplete"
+      (ngModelChange)="userId.set($event)"
+    />
+    <mat-spinner
+      *ngIf="loadingState().isLoading"
+      matSuffix
+      class="page-container--spinner"
+    ></mat-spinner>
+    <mat-autocomplete #autoComplete="matAutocomplete">
+      <mat-option
+        *ngFor="let post of posts(); trackBy: trackByFn"
+        [value]="post"
+      >
+        {{ post.title }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
