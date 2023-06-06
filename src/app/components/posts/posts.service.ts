@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, delay, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { delay, switchMap } from 'rxjs/operators';
 import { Post } from './post.type';
 @Injectable({
   providedIn: 'root',
@@ -12,12 +13,15 @@ export class PostsService {
     if (userId == 100) {
       return throwError(() => new Error('User not found'));
     }
-    return this.http
-      .get<Post[]>('https://jsonplaceholder.typicode.com/posts', {
-        params: {
-          ...(userId ? { userId: userId.toString() } : {}),
-        },
-      })
-      .pipe(delay(2000));
+    return of(null).pipe(
+      delay(2000),
+      switchMap(() =>
+        this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts', {
+          params: {
+            ...(userId ? { userId: userId.toString() } : {}),
+          },
+        })
+      )
+    );
   }
 }

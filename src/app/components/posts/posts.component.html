@@ -16,7 +16,7 @@
     <mat-autocomplete #autoComplete="matAutocomplete">
       <mat-option
         *ngFor="let post of posts(); trackBy: trackByFn"
-        [value]="post"
+        [value]="post.title"
       >
         {{ post.title }}
       </mat-option>
