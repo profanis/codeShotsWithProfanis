@@ -1,8 +1,9 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-
+import { fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Router, provideRouter } from '@angular/router';
-import { RouterTestingHarness } from '@angular/router/testing';
+import {
+  SpectacularFeatureHarness,
+  createFeatureHarness,
+} from '@ngworker/spectacular';
 import { ProductsComponent } from '../products.component';
 import { ProductDetailComponent } from './product-detail.component';
 
@@ -10,61 +11,55 @@ import { ProductDetailComponent } from './product-detail.component';
  * Routed Component
  */
 describe('ProductDetailComponent', () => {
-  let component: ProductDetailComponent;
-  let harness: RouterTestingHarness;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProductDetailComponent],
-      providers: [
-        provideRouter([
-          {
-            path: 'products/:id',
-            component: ProductDetailComponent,
-          },
-          {
-            path: 'products',
-            component: ProductsComponent,
-          },
-        ]),
+  let harness: SpectacularFeatureHarness;
+  beforeEach(() => {
+    harness = createFeatureHarness({
+      featurePath: 'products',
+      routes: [
+        {
+          path: 'products',
+          component: ProductsComponent,
+        },
+        {
+          path: 'products/:id',
+          component: ProductDetailComponent,
+        },
       ],
-    }).compileComponents();
-
-    // fixture = TestBed.createComponent(ProductDetailComponent);
-    // component = fixture.componentInstance;
-    // fixture.detectChanges();
-    harness = await RouterTestingHarness.create();
+    });
   });
 
   it('should have the correct productId from the route', async () => {
-    const component = await harness.navigateByUrl(
-      'products/1',
-      ProductDetailComponent
-    );
+    // Arrange (navigate to the product detail page)
+    await harness.router.navigate(['~', '1']);
 
+    // Act (get the active component)
+    const component =
+      await harness.rootComponent.getActiveComponent<ProductDetailComponent>();
+
+    // Assert (check the productId)
     expect(component.productId.toString()).toBe('1');
   });
 
   it('should navigate back to products list if the provided productId is wrong', async () => {
-    await harness.navigateByUrl('products/11');
+    // Arrange (navigate to the product detail page with an invalid productId)
+    await harness.router.navigate(['~', '100']);
 
-    expect(TestBed.inject(Router).url).toBe('/products');
+    // Assert (check the URL)
+    expect(harness.location.path()).toBe('~/');
   });
 
   it('should click back to products and go to the list', fakeAsync(async () => {
-    const component = await harness.navigateByUrl(
-      'products/1',
-      ProductDetailComponent
+    // Arrange (navigate to the product detail page)
+    await harness.router.navigate(['~', '1']);
+
+    // Act (click the back to products button)
+    const element = harness.rootFixture.debugElement.query(
+      By.css('[data-test="back-to-products"]')
     );
+    element.triggerEventHandler('click');
+    await harness.rootFixture.whenStable();
 
-    const element = harness.routeDebugElement?.query(
-      By.css('[data-test="back-to-products"')
-    );
-
-    element?.triggerEventHandler('click');
-    tick();
-
-    expect(component.productId.toString()).toBe('1');
-    expect(TestBed.inject(Router).url).toBe('/products');
+    // Assert (check the URL)
+    expect(harness.location.path()).toBe('~/');
   }));
 });

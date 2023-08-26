@@ -14,4 +14,8 @@ export class ProductsService {
     }));
     return of(products);
   }
+
+  productIdIsValid(productId: number) {
+    return productId > 0 && productId <= 10;
+  }
 }

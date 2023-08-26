@@ -1,58 +1,45 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-
 import { By } from '@angular/platform-browser';
-import { Router, RouterLink, provideRouter } from '@angular/router';
-import { RouterTestingHarness } from '@angular/router/testing';
+import { RouterLink } from '@angular/router';
+import {
+  SpectacularFeatureHarness,
+  createFeatureHarness,
+} from '@ngworker/spectacular';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductsComponent } from './products.component';
-
 /**
  * Routing Component
  */
 describe('ProductsComponent', () => {
-  let component: ProductsComponent;
-  // let fixture: ComponentFixture<ProductsComponent>;
-  let harness: RouterTestingHarness;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ProductsComponent],
-      providers: [
-        provideRouter([
-          {
-            path: 'products',
-            component: ProductsComponent,
-          },
-          {
-            path: 'products/:id',
-            component: ProductDetailComponent,
-          },
-        ]),
+  let harness: SpectacularFeatureHarness;
+  beforeEach(() => {
+    harness = createFeatureHarness({
+      featurePath: 'products',
+      routes: [
+        {
+          path: 'products',
+          component: ProductsComponent,
+        },
+        {
+          path: 'products/:id',
+          component: ProductDetailComponent,
+        },
       ],
-    }).compileComponents();
-
-    // fixture = TestBed.createComponent(ProductsComponent);
-    // component = fixture.componentInstance;
-    // fixture.detectChanges();
-
-    harness = await RouterTestingHarness.create();
-    component = await harness.navigateByUrl('/products', ProductsComponent);
+    });
   });
 
-  it('should navigate to product details page', fakeAsync(() => {
+  it('should navigate to product details page', async () => {
     // Arrange (query the DOM for the first routerLink element)
-    const linkItems = harness.routeDebugElement?.queryAll(
+    const linkItems = harness.rootFixture.debugElement.queryAll(
       By.directive(RouterLink)
     );
-
     // Act (click the first routerLink element)
-    linkItems![0].triggerEventHandler('click', {
+    linkItems[0].triggerEventHandler('click', {
       button: 0,
     });
 
-    tick();
+    await harness.rootFixture.whenStable();
 
     // Assert (check the URL)
-    expect(TestBed.inject(Router).url).toBe('/products/1');
-  }));
+    expect(harness.location.path()).toBe('~/1');
+  });
 });

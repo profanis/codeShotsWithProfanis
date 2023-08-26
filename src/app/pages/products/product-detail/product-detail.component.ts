@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -38,11 +39,12 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 export class ProductDetailComponent {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
+  private productsService = inject(ProductsService);
   productId: number = 0;
 
   constructor() {
     this.activatedRoute.params.subscribe((params) => {
-      if (+params['id'] > 10) {
+      if (!this.productsService.productIdIsValid(+params['id'])) {
         this.router.navigate(['products']);
       }
       this.productId = params['id'];

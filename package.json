@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^15.2.6",
     "@angular/router": "^15.2.6",
     "bootstrap": "^4.6.0",
+    "ng-mocks": "^14.11.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -30,6 +31,7 @@
     "@angular-devkit/build-angular": "^15.2.5",
     "@angular/cli": "^15.2.5",
     "@angular/compiler-cli": "^15.2.6",
+    "@ngworker/spectacular": "^15.0.0",
     "@types/jasmine": "^4.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
