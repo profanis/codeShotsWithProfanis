@@ -1,6 +1,7 @@
+import { provideLocationMocks } from '@angular/common/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterLink, provideRouter } from '@angular/router';
+import { provideRouter, RouterLink } from '@angular/router';
 import { NavigationComponent } from './navigation.component';
 
 describe('NavigationComponent', () => {
@@ -10,7 +11,7 @@ describe('NavigationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NavigationComponent],
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), provideLocationMocks()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NavigationComponent);
