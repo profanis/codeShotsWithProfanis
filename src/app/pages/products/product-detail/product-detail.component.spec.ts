@@ -1,8 +1,8 @@
 import { fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
-  SpectacularFeatureHarness,
   createFeatureHarness,
+  SpectacularFeatureHarness,
 } from '@ngworker/spectacular';
 import { ProductsComponent } from '../products.component';
 import { ProductDetailComponent } from './product-detail.component';
@@ -34,7 +34,7 @@ describe('ProductDetailComponent', () => {
 
     // Act (get the active component)
     const component =
-      await harness.rootComponent.getActiveComponent<ProductDetailComponent>();
+      harness.rootComponent.getActiveComponent<ProductDetailComponent>();
 
     // Assert (check the productId)
     expect(component.productId.toString()).toBe('1');
