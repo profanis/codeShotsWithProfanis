@@ -1,6 +1,7 @@
+import { provideLocationMocks } from '@angular/common/testing';
 import { Component } from '@angular/core';
-import { TestBed, fakeAsync } from '@angular/core/testing';
-import { Router, provideRouter } from '@angular/router';
+import { fakeAsync, TestBed } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { isLoggedGuardFn } from '.';
@@ -33,6 +34,7 @@ describe('Functional Guards', () => {
             component: NoAccessTestComponent,
           },
         ]),
+        provideLocationMocks(),
         // {
         //   provide: Router,
         //   useValue: mockRouter,
