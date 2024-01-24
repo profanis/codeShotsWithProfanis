@@ -10,4 +10,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Code Shots With Profanis - Like and Subscribe :)';
+  isVisible = false;
 }
