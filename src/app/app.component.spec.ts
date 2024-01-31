@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { DeferBlockBehavior, DeferBlockState, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  DeferBlockBehavior,
+  DeferBlockState,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
-
-
   // defer (when isVisible)
   // defer (on idle)
   // defer (on viewport)
@@ -17,248 +21,233 @@ describe('AppComponent', () => {
   it('should pass having - defer (when isVisible)', async () => {
     // Arrange
     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Playthrough
+      deferBlockBehavior: DeferBlockBehavior.Playthrough,
     }).compileComponents();
 
     @Component({
       selector: 'app-root',
       template: `
-        <button data-test="button--isVisible" (click)="isVisible = !isVisible">Toggle</button>
+        <button data-test="button--isVisible" (click)="isVisible = !isVisible">
+          Toggle
+        </button>
 
-        @defer(when isVisible){
+        @defer (when isVisible) {
           <div>empty defer block</div>
         }
+        ,
       `,
+      standalone: true,
     })
     class DummyComponent {
       isVisible = false;
     }
 
+    await TestBed.configureTestingModule({
+      deferBlockBehavior: DeferBlockBehavior.Playthrough,
+    }).compileComponents();
+
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
-    const button = fixture.debugElement.query(By.css('[data-test="button--isVisible"]')).nativeElement;
+    const button = fixture.debugElement.query(
+      By.css('[data-test="button--isVisible"]'),
+    ).nativeElement;
     button.dispatchEvent(new Event('click'));
 
     fixture.detectChanges();
     await fixture.whenStable();
 
-
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('empty defer block');
-  })
+  });
 
-  it('should pass having - defer (on idle)', fakeAsync( async () => {
-     // Arrange
-     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Manual
+  it('should pass having - defer (on idle)', fakeAsync(async () => {
+    // Arrange
+    await TestBed.configureTestingModule({
+      deferBlockBehavior: DeferBlockBehavior.Manual,
     }).compileComponents();
 
     @Component({
       selector: 'app-root',
       template: `
-        @defer(on idle){
+        @defer (on idle) {
           <div>empty defer block</div>
-        } @placeholder{
-
+        } @placeholder {
         } @error {
-
-        } @loading {
-
-        }
-
+        } @loading {}
       `,
     })
-    class DummyComponent {
-    }
+    class DummyComponent {}
 
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
-    const deferFixture = (await fixture.getDeferBlocks())[0]
-    deferFixture.render(DeferBlockState.Complete)
+    const deferFixture = (await fixture.getDeferBlocks())[0];
+    deferFixture.render(DeferBlockState.Complete);
 
-
-    fixture.detectChanges();
+    tick(1000);
     await fixture.whenStable();
-
 
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('empty defer block');
-  }))
+  }));
 
   it('should pass having - defer (on viewport)', async () => {
     // Arrange
     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Manual
+      deferBlockBehavior: DeferBlockBehavior.Manual,
     }).compileComponents();
 
     @Component({
       selector: 'app-root',
       template: `
-        @defer(on viewport){
+        @defer (on viewport) {
           <div>empty defer block</div>
-        } @placeholder{
+        } @placeholder {
           <div>placeholder</div>
         }
-
       `,
     })
-    class DummyComponent {
-    }
+    class DummyComponent {}
 
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
-    const deferFixture = (await fixture.getDeferBlocks())[0]
-    deferFixture.render(DeferBlockState.Complete)
-
+    const deferFixture = (await fixture.getDeferBlocks())[0];
+    deferFixture.render(DeferBlockState.Complete);
 
     fixture.detectChanges();
     await fixture.whenStable();
 
-
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('empty defer block');
-  })
+  });
 
   it('should pass having - defer (on timer(1000))', fakeAsync(async () => {
-     // Arrange
-     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Playthrough
+    // Arrange
+    await TestBed.configureTestingModule({
+      deferBlockBehavior: DeferBlockBehavior.Playthrough,
     }).compileComponents();
 
     @Component({
       selector: 'app-root',
       template: `
-        @defer(on timer(1000)){
+        @defer (on timer(1000)) {
           <div>empty defer block</div>
-        } @placeholder{
+        } @placeholder {
           <div>placeholder</div>
         }
-
       `,
     })
-    class DummyComponent {
-    }
+    class DummyComponent {}
 
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
-    tick(1000)
-
+    tick(1000);
 
     fixture.detectChanges();
     // await fixture.whenStable();
 
-
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('empty defer block');
-  }))
+  }));
 
   it('should pass having - defer (on interaction)', async () => {
     // Arrange
     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Playthrough
+      deferBlockBehavior: DeferBlockBehavior.Playthrough,
     }).compileComponents();
 
     @Component({
       selector: 'app-root',
       template: `
         <button #trigger data-test="button--interaction">Interact</button>
-        @defer(on interaction(trigger)){
+        @defer (on interaction(trigger)) {
           <div>empty defer block</div>
         }
-
       `,
     })
-    class DummyComponent {
-    }
+    class DummyComponent {}
 
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
-    const button = fixture.debugElement.query(By.css('[data-test="button--interaction"]')).nativeElement
+    const button = fixture.debugElement.query(
+      By.css('[data-test="button--interaction"]'),
+    ).nativeElement;
     button.dispatchEvent(new Event('click'));
-
 
     fixture.detectChanges();
     await fixture.whenStable();
 
-
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('empty defer block');
-  })
+  });
 
   it('should pass having - defer (on hover)', async () => {
     // Arrange
     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Playthrough
+      deferBlockBehavior: DeferBlockBehavior.Playthrough,
     }).compileComponents();
 
     @Component({
       selector: 'app-root',
       template: `
         <button #trigger data-test="button--hover">Hover here</button>
-        @defer(on hover(trigger)){
+        @defer (on hover(trigger)) {
           <div>empty defer block</div>
         }
-
       `,
     })
-    class DummyComponent {
-    }
+    class DummyComponent {}
 
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
-    const button = fixture.debugElement.query(By.css('[data-test="button--hover"]')).nativeElement
+    const button = fixture.debugElement.query(
+      By.css('[data-test="button--hover"]'),
+    ).nativeElement;
     button.dispatchEvent(new Event('mouseenter'));
-
 
     fixture.detectChanges();
     await fixture.whenStable();
 
-
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('empty defer block');
-  })
+  });
 
   it('should pass having - defer (on immediate)', fakeAsync(async () => {
     // Arrange
     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Playthrough
+      deferBlockBehavior: DeferBlockBehavior.Playthrough,
     }).compileComponents();
 
     @Component({
       selector: 'app-root',
       template: `
-        @defer(on immediate){
+        @defer (on immediate) {
           <div>empty defer block</div>
         }
-
       `,
     })
-    class DummyComponent {
-    }
+    class DummyComponent {}
 
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
 
-    tick(0)
+    tick(0);
     await fixture.whenStable();
-
 
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('empty defer block');
-  }))
+  }));
 
-  it('should pass having - nested defer blocks',  async () => {
-
+  it('should pass having - nested defer blocks', async () => {
     // Arrange
     await TestBed.configureTestingModule({
-      deferBlockBehavior: DeferBlockBehavior.Manual
+      deferBlockBehavior: DeferBlockBehavior.Manual,
     }).compileComponents();
 
     @Component({
@@ -271,28 +260,23 @@ describe('AppComponent', () => {
             <div>nested defer block</div>
           }
         }
-
       `,
     })
-    class DummyComponent {
-    }
+    class DummyComponent {}
 
     const fixture = TestBed.createComponent(DummyComponent);
 
     // Act
-    const deferFixture = (await fixture.getDeferBlocks())[0]
-    await deferFixture.render(DeferBlockState.Complete)
+    const deferFixture = (await fixture.getDeferBlocks())[0];
+    await deferFixture.render(DeferBlockState.Complete);
 
-    const nestedDeferBlock = (await deferFixture.getDeferBlocks())[0]
-    await nestedDeferBlock.render(DeferBlockState.Complete)
+    const nestedDeferBlock = (await deferFixture.getDeferBlocks())[0];
+    await nestedDeferBlock.render(DeferBlockState.Complete);
 
     fixture.detectChanges();
     await fixture.whenStable();
 
-
     // Assert
     expect(fixture.nativeElement.innerHTML).toContain('nested defer block');
-  })
-
-
+  });
 });
