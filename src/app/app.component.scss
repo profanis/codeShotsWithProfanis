@@ -1,0 +1,76 @@
+.binary-tree {
+  width: fit-content;
+
+  .root-label {
+    &::before {
+      content: none !important;
+    }
+  }
+
+  .node {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    position: relative;
+
+    &:nth-child(3) > .node-label::before {
+      left: auto;
+      right: 50%;
+      background: linear-gradient(
+        to bottom left,
+        #0000 49%,
+        #000 0 51%,
+        #0000 0
+      );
+    }
+  }
+
+  .node-label {
+    grid-column: 1 / 3;
+    border: 1px solid;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: auto auto;
+    text-align: center;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 50%;
+      height: 1.5rem;
+      left: 50%;
+      top: 0;
+      transform: translateY(-100%);
+      background: linear-gradient(
+        to bottom right,
+        #0000 49%,
+        #000 0 51%,
+        #0000 0
+      );
+    }
+  }
+}
+
+// .tree-container {
+//   display: grid;
+//   grid-template-areas:
+//     "a b c "
+//     "d e f ";
+
+//   .root-node {
+//     grid-area: b;
+//   }
+
+//   .node-one {
+//     grid-area: d;
+//   }
+
+//   .node-two {
+//     grid-area: f;
+//   }
+// }
