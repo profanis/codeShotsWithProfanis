@@ -6,7 +6,6 @@ import {
   signal,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { isDirty } from 'src/app/angular-utils';
 import { BaseNodeComponent } from './base-node.component';
 import { ThirteenComponent } from './thirteen.component';
 import { TwelveComponent } from './twelve.component';
@@ -16,9 +15,7 @@ import { TwelveComponent } from './twelve.component';
   standalone: true,
   imports: [TwelveComponent, ThirteenComponent, AsyncPipe],
   template: `
-    @if (isDirty) {
-      <span class="node-label" [style.background-color]="color">7</span>
-    }
+    <span class="node-label" [style.background-color]="color">7</span>
 
     <app-twelve class="node" />
 
@@ -41,10 +38,5 @@ export class SevenComponent extends BaseNodeComponent {
     //   this.counterSignal.set(this.counterSignal() + 1);
     //   // this.counter.next(this.counter.value + 1);
     // }, 1000);
-  }
-
-  get isDirty() {
-    console.log('5 isDirty', isDirty(this));
-    return true;
   }
 }

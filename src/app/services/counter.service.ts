@@ -13,11 +13,11 @@ export class CounterService {
 
   increaseCounter() {
     this.#counterBs.next(this.#counterBs.value + 1);
-    this.#counter.update(() => this.#counter() + 1);
+    this.#counter.update((value) => value + 1);
   }
 
   decreaseCounter() {
     this.#counterBs.next(this.#counterBs.value - 1);
-    this.#counter.update(() => this.#counter() - 1);
+    this.#counter.update((value) => value - 1);
   }
 }

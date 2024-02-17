@@ -39,13 +39,14 @@ export class ThirteenComponent extends BaseNodeComponent {
     //   this.counterBs.next(this.counterBs.value + 1);
     // }, 1000);
 
+    // TODO: unsubscribe
     fromEvent(this.host.nativeElement, 'click').subscribe(() => {
       this.increaseCounter();
     });
   }
 
   increaseCounter() {
-    // this.counterSignal.update(() => this.counterSignal() + 1);
+    // this.counterSignal.update((value) => value + 1);
     this.counterService.increaseCounter();
   }
 }
