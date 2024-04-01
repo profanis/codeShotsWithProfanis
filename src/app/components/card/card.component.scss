@@ -65,6 +65,11 @@ img {
     text-transform: uppercase;
   }
 
+  &__title-container {
+    display: flex;
+    flex-flow: column;
+  }
+
   &__content {
     flex: 1 1 auto;
     font-size: 0.875rem;

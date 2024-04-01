@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  ContentChild,
   Directive,
+  ElementRef,
   Input,
-  TemplateRef,
+  contentChildren,
+  effect,
+  input,
+  viewChildren,
 } from '@angular/core';
 
 @Directive({
@@ -20,39 +23,51 @@ export class CardFooterDirective {}
 export class CardHeaderDirective {}
 
 @Directive({
-  selector: '[appCardMainContent]',
+  selector: 'app-card-content',
   standalone: true,
 })
-export class CardContentDirective {
-  constructor(public template: TemplateRef<any>) {}
+export class CardContentDirective {}
+
+@Component({
+  selector: 'app-card-title',
+  standalone: true,
+  template: ` {{ title() }}`,
+})
+export class CardTitleComponent {
+  title = input<string>();
 }
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardTitleComponent],
   template: `
     <!-- https://codepen.io/mcraiganthony/pen/NxGxqm -->
-    <ng-content select="app-card-header"></ng-content>
     <div class="card">
       <div class="card__image card__image--fence"></div>
       <div class="card__content">
-        <div class="card__title">{{ title }}</div>
+        <div class="card__title-container">
+          @if (title) {
+            <div class="card__title">
+              <app-card-title [title]="title" />
+            </div>
+          } @else {
+            @for (title of titles; track title) {
+              <app-card-title [title]="title" />
+            }
+          }
+        </div>
 
         <!-- Content -->
         <div class="card__content">
-          <ng-container
-            *ngIf="carMainContent"
-            [ngTemplateOutlet]="carMainContent.template"
-          ></ng-container>
+          <ng-content select="app-card-content"></ng-content>
         </div>
         <!-- /Content -->
 
         <!-- Footer -->
-        <ng-content
-          *ngIf="carMainContent"
-          select="app-card-footer"
-        ></ng-content>
+        @if (carContent()) {
+          <ng-content select="app-card-footer"></ng-content>
+        }
         <!-- /Footer -->
       </div>
     </div>
@@ -61,5 +76,18 @@ export class CardContentDirective {
 })
 export class CardComponent {
   @Input() title?: string;
-  @ContentChild(CardContentDirective) carMainContent?: CardContentDirective;
+  @Input() titles?: string[];
+
+  titleElements = viewChildren(CardTitleComponent, { read: ElementRef });
+  carContent = contentChildren(CardContentDirective);
+
+  constructor() {
+    effect(() => {
+      const totalHeight = this.titleElements().reduce((acc, el) => {
+        const { height } = el.nativeElement.getBoundingClientRect();
+        return acc + height;
+      }, 0);
+      console.log('totalHeight', totalHeight);
+    });
+  }
 }
