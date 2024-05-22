@@ -16,15 +16,13 @@ import { outputToObservable } from '@angular/core/rxjs-interop';
 })
 export class ParentComponent {
   username = 'profanis';
-  childComponentRef = viewChild<ChildComponent>(ChildComponent);
+  childComponentRef = viewChild.required<ChildComponent>(ChildComponent);
 
   constructor() {
     afterNextRender(() => {
-      if (this.childComponentRef()) {
-        outputToObservable(this.childComponentRef()!.usernameChange).subscribe(
-          this.usernameChangeHandler,
-        );
-      }
+      outputToObservable(this.childComponentRef()!.usernameChange).subscribe(
+        this.usernameChangeHandler,
+      );
     });
   }
 
