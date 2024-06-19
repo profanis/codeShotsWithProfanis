@@ -18,19 +18,21 @@ import { ProductsService } from 'src/app/services/products.service';
   ],
   template: `
     <h2>Products</h2>
-    <ng-container *ngIf="products$ | async as products">
-      <ul restoreScrollPosition class="products-container">
-        <li
-          class="products-container--product-item"
-          [routerLink]="['/products', product.id]"
-          *ngFor="let product of products"
-        >
-          <div>
-            {{ product.name }}
-          </div>
-        </li>
-      </ul>
-    </ng-container>
+    @if(products$ | async; as products) {
+
+    <ul restoreScrollPosition class="products-container">
+      @for(product of products; track product.id) {
+      <li
+        class="products-container--product-item"
+        [routerLink]="['/products', product.id]"
+      >
+        <div>
+          {{ product.name }}
+        </div>
+      </li>
+      }
+    </ul>
+    }
   `,
   styles: [
     `
