@@ -13,6 +13,8 @@ export class ProductsService {
       price: 100,
       description: `This is product ${index + 1}`,
     }));
-    return of(products).pipe(delay(3000));
+    return of(products).pipe(
+      delay(3000), // Simulate network latency
+    );
   }
 }

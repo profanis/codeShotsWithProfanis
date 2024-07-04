@@ -1,5 +1,6 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { RestoreScrollPositionDirective } from 'src/app/directives/restore-scroll-position.directive';
@@ -8,30 +9,22 @@ import { ProductsService } from 'src/app/services/products.service';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [
-    NgFor,
-    RouterLink,
-    MatCardModule,
-    AsyncPipe,
-    RestoreScrollPositionDirective,
-    NgIf,
-  ],
+  imports: [NgFor, RouterLink, RestoreScrollPositionDirective, NgIf],
   template: `
     <h2>Products</h2>
-    @if(products$ | async; as products) {
-
-    <ul restoreScrollPosition class="products-container">
-      @for(product of products; track product.id) {
-      <li
-        class="products-container--product-item"
-        [routerLink]="['/products', product.id]"
-      >
-        <div>
-          {{ product.name }}
-        </div>
-      </li>
-      }
-    </ul>
+    @if (products(); as products) {
+      <ul restoreScrollPosition class="products-container">
+        @for (product of products; track product.id) {
+          <li
+            class="products-container--product-item"
+            [routerLink]="['/products', product.id]"
+          >
+            <div>
+              {{ product.name }}
+            </div>
+          </li>
+        }
+      </ul>
     }
   `,
   styles: [
@@ -56,6 +49,5 @@ import { ProductsService } from 'src/app/services/products.service';
   ],
 })
 export class ProductsComponent {
-  productService = inject(ProductsService);
-  products$ = this.productService.get();
+  products = toSignal(inject(ProductsService).get());
 }

@@ -1,4 +1,4 @@
-import { CommonModule, Location } from '@angular/common';
+import { AsyncPipe, CommonModule, Location } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [RouterLink, AsyncPipe],
   template: `
     <h2>Product Detail</h2>
     <p class="back-to-products">

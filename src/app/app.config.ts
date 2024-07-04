@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
       withDebugTracing(),
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled',
-      })
+      }),
     ),
   ],
 };
