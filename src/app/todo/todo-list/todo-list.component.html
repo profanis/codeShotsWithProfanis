@@ -23,7 +23,10 @@
   <mat-card-title>Complete Items</mat-card-title>
   <!-- Todo items -->
   <ng-container
-    *ngTemplateOutlet="todoItems; context: { todoItems: completeTodoItems() }"
+    *ngTemplateOutlet="
+      todoItems;
+      context: { todoItems: todoStore.completeTodoItems() }
+    "
   ></ng-container>
   <!-- /Todo items -->
 </mat-card>
@@ -32,7 +35,10 @@
   <mat-card-title>Incomplete Items</mat-card-title>
   <!-- Todo items -->
   <ng-container
-    *ngTemplateOutlet="todoItems; context: { todoItems: inCompleteTodoItems() }"
+    *ngTemplateOutlet="
+      todoItems;
+      context: { todoItems: todoStore.inCompleteTodoItems() }
+    "
   ></ng-container>
   <!-- /Todo items -->
 </mat-card>

@@ -1,15 +1,14 @@
 import { AsyncPipe, NgForOf, NgTemplateOutlet } from '@angular/common';
-import { Component, inject, Signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
-import { Store } from '@ngxs/store';
-import { TodoActions } from '../store/todo/todo.actions';
-import { TodoSelectors } from '../store/todo/todo.queries';
 import { TodoModel } from '../types/todo';
+import { TodoStore } from './todo.store';
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo-list.component.html',
@@ -27,31 +26,23 @@ import { TodoModel } from '../types/todo';
     NgForOf,
     NgTemplateOutlet,
   ],
+  providers: [TodoStore],
 })
 export class TodoListComponent {
-  private _store = inject(Store);
-
-  completeTodoItems: Signal<TodoModel[]> = this._store.selectSignal(
-    TodoSelectors.getCompletedTodos,
-  );
-
-  inCompleteTodoItems: Signal<TodoModel[]> = this._store.selectSignal(
-    TodoSelectors.getIncompletedTodos,
-  );
+  todoStore = inject(TodoStore);
 
   newItemName!: string;
 
   constructor() {
-    this._store.dispatch(new TodoActions.Get());
+    this.todoStore.getTodos();
   }
 
   toggleItem(todoItem: TodoModel) {
-    // dispatch an action to update the todo item
-    this._store.dispatch(new TodoActions.UpdateComplete(todoItem.id, todoItem));
+    this.todoStore.updateComplete(todoItem.id, todoItem);
   }
 
   addItem() {
-    this._store.dispatch(new TodoActions.Add(this.newItemName));
+    this.todoStore.add(this.newItemName);
     this.newItemName = '';
   }
 }
