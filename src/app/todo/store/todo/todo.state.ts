@@ -33,9 +33,14 @@ export class TodoState {
     { id, todo }: TodoActions.UpdateComplete,
   ) {
     const state = ctx.getState();
+
+    // update the todo item without mutating the state
     const updatedTodoItems = state.todos.map((item) => {
       if (item.id === id) {
-        item.completed = !item.completed;
+        return {
+          ...item,
+          completed: !item.completed,
+        };
       }
 
       return item;
@@ -44,6 +49,18 @@ export class TodoState {
     ctx.setState({
       todos: updatedTodoItems,
     });
+
+    // update the todo item using the updateItem method
+    // ctx.setState(
+    //   patch<TodoStateModel>({
+    //     todos: updateItem<TodoModel>(
+    //       (item) => item.id === id,
+    //       patch<TodoModel>({
+    //         completed: !todo.completed,
+    //       }),
+    //     ),
+    //   }),
+    // );
   }
 
   @Action(TodoActions.Add)
