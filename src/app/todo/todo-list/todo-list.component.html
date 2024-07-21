@@ -40,13 +40,7 @@
 <ng-template #todoItems let-todoItems="todoItems">
   <mat-list role="list">
     @for (item of todoItems; track item.id) {
-      <mat-list-item [class.is-done]="item.completed" role="listitem">
-        <div class="flex items-center">
-          <mat-checkbox [checked]="item.completed" (change)="toggleItem(item)">
-            {{ item.title }}
-          </mat-checkbox>
-        </div>
-      </mat-list-item>
+      <app-todo-item [item]="item" (toggleItem)="toggleItem($event)" />
     } @empty {
       <mat-list-item role="listitem">
         <div class="flex items-center">

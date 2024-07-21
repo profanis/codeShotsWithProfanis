@@ -1,5 +1,10 @@
 import { AsyncPipe, NgForOf, NgTemplateOutlet } from '@angular/common';
-import { Component, inject, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -7,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { Store } from '@ngxs/store';
+import { TodoItemComponent } from '../components/todo-item/todo-item.component';
 import { TodoActions } from '../store/todo/todo.actions';
 import { TodoSelectors } from '../store/todo/todo.queries';
 import { TodoModel } from '../types/todo';
@@ -26,7 +32,9 @@ import { TodoModel } from '../types/todo';
     AsyncPipe,
     NgForOf,
     NgTemplateOutlet,
+    TodoItemComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoListComponent {
   private _store = inject(Store);
