@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+
+.book-card {
+  &--title {
+    height: 40px;
+  }
+
+  &--description {
+    height: 60px;
+  }
+
+  &--counter {
+    display: flex;
+    align-items: center;
+  }
+}
