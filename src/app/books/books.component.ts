@@ -11,13 +11,16 @@ import {
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Book, BooksService } from '../books.service';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-books',
   imports: [
     MatFormFieldModule,
+    MatInputModule,
     MatSelectModule,
     FormsModule,
     MatCardModule,
@@ -26,11 +29,8 @@ import { Book, BooksService } from '../books.service';
   template: `
     <mat-form-field appearance="fill">
       <mat-label>Favorite Category</mat-label>
-      <mat-select
-        [ngModel]="selectedCategory"
-        (ngModelChange)="selectedCategory.set($event)"
-      >
-        @for (category of categories; track $index) {
+      <mat-select [(ngModel)]="selectedCategory">
+        @for (category of categories(); track $index) {
           <mat-option [value]="category">{{ category }}</mat-option>
         }
       </mat-select>
@@ -49,6 +49,7 @@ import { Book, BooksService } from '../books.service';
             mat-card-image
             src="assets/book-cover.jpg"
             [attr.alt]="book.title"
+            height="200px"
           />
           <mat-card-content class="book-card--description">
             <p>{{ book.shortDescription }}</p>
@@ -57,14 +58,25 @@ import { Book, BooksService } from '../books.service';
             <p>Price: {{ book.price | currency }}</p>
             <div class="book-card--counter">
               <button (click)="decrement(book)">-</button>
-              <span>{{ cart().get(book.id)?.counter || 0 }}</span>
+              <span>{{ book.counter || 0 }}</span>
               <button (click)="increment(book)">+</button>
             </div>
           </mat-card-footer>
         </mat-card>
       }
+    </div>
+
+    <div>
       @if (selectedCategory()) {
-        {{ counter() }}
+        <div style="margin-top:24px ">Total: {{ counter() }}</div>
+        <mat-form-field appearance="fill">
+          <mat-label>Comments</mat-label>
+          <textarea
+            [(ngModel)]="comments"
+            matInput
+            placeholder="Add your comments here"
+          ></textarea>
+        </mat-form-field>
       }
     </div>
   `,
@@ -73,53 +85,64 @@ import { Book, BooksService } from '../books.service';
 })
 export class BooksComponent {
   // Injections
-  booksService = inject(BooksService);
+  books = linkedSignal(
+    toSignal(inject(BooksService).getBooks(), {
+      initialValue: [],
+    }),
+  );
 
   // State
   selectedCategory = signal<string>('');
-  categories = this.booksService.getCategories();
+  comments = linkedSignal({
+    source: () => this.selectedCategory(),
+    computation: () => '',
+  });
+  categories = computed(() => {
+    return this.books().map((book) => book.category);
+  });
 
   // Derived State
   booksToDisplay = computed(() => {
-    return this.booksService.getBooksByCategory(this.selectedCategory());
-  });
-  cart = linkedSignal({
-    source: () => this.selectedCategory(),
-    computation: () => new Map(),
+    return this.books().filter(
+      (book) => book.category === this.selectedCategory(),
+    );
   });
 
-  counter = linkedSignal(() => {
-    return Array.from(this.cart().values()).reduce(
-      (acc, book) => acc + (book.counter || 0),
-      0,
-    );
+  counter = computed(() => {
+    return this.booksToDisplay().reduce((acc, cur) => {
+      return acc + (cur.counter || 0);
+    }, 0);
   });
 
   constructor() {
     effect(() => {
       if (this.selectedCategory()) {
-        this.counter.set(0);
+        this.books.update((books) => {
+          return books.map((book) => ({ ...book, counter: 0 }));
+        });
       }
     });
   }
 
   increment(book: Book) {
-    const bookInCart = this.cart().get(book.id);
-    if (bookInCart) {
-      bookInCart.counter = (bookInCart.counter || 0) + 1;
-    } else {
-      this.cart().set(book.id, { ...book, counter: 1 });
-    }
-    this.cart.update((cart) => new Map(cart));
+    this.books.update((books) => {
+      return books.map((b) => {
+        if (b.id === book.id) {
+          return { ...b, counter: (b.counter || 0) + 1 };
+        }
+        return b;
+      });
+    });
   }
 
   decrement(book: Book) {
-    const bookInCart = this.cart().get(book.id);
-    if (bookInCart) {
-      bookInCart.counter = (bookInCart.counter || 0) - 1;
-    } else {
-      this.cart().set(book.id, { ...book, counter: 0 });
-    }
-    this.cart.update((cart) => new Map(cart));
+    this.books.update((books) => {
+      return books.map((b) => {
+        if (b.id === book.id) {
+          return { ...b, counter: (b.counter || 0) - 1 };
+        }
+        return b;
+      });
+    });
   }
 }

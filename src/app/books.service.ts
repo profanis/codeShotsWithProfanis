@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 
 export interface Book {
   id: number;
@@ -22,8 +23,6 @@ export interface Book {
   providedIn: 'root',
 })
 export class BooksService {
-  // list of books with their category.
-  // A book can belong only to one category. The categories can be 'fiction', 'non-fiction', 'biography', 'tech', 'self-help', 'history', 'science';
   private books: Book[] = [
     {
       id: 1,
@@ -229,19 +228,7 @@ export class BooksService {
     },
   ];
 
-  getCategories(): string[] {
-    return this.books.map((book) => book.category);
-  }
-
-  getBooksByCategory(category: string): Book[] {
-    return this.books.filter((book) => book.category === category);
-  }
-
-  updateBookCounter(book: Book, counter: number) {
-    book.counter = counter;
-  }
-
-  getTotalCounter(): number {
-    return this.books.reduce((acc, book) => acc + (book.counter || 0), 0);
+  getBooks() {
+    return of(this.books);
   }
 }
