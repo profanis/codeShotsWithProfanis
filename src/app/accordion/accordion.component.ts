@@ -3,11 +3,11 @@ import {
   Component,
   input,
   linkedSignal,
+  signal,
 } from '@angular/core';
 
 @Component({
   selector: 'app-accordion',
-  imports: [],
   template: `
     <div class="accordion">
       <div
@@ -32,10 +32,17 @@ import {
       border: 1px solid #ccc;
       border-radius: 4px;
       padding: 10px;
-      width: 300px;
+      width: 150px;
+      position: relative;
     }
     .content {
       margin-top: 10px;
+    }
+
+    .chevron-down::after,
+    .chevron-up::after {
+      position: absolute;
+      right: 10px;
     }
 
     .chevron-down::after {
@@ -50,7 +57,7 @@ import {
 export class AccordionComponent {
   readonly isOpen = input(false);
 
-  state = linkedSignal(() => this.isOpen());
+  state = linkedSignal(this.isOpen);
 
   toggle() {
     this.state.set(!this.state());

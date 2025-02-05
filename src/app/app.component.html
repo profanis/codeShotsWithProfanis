@@ -1,2 +1,27 @@
-<app-books />
-<!-- <app-accordion [isOpen]="true" /> -->
+{{ computedValue() }}
+
+<mat-form-field appearance="fill">
+  <mat-label>Select an item</mat-label>
+  <mat-select [(value)]="selectedItem">
+    <mat-option [value]="null">Select</mat-option>
+    @for (item of listOfItems(); track item.id) {
+      <mat-option [value]="item">
+        {{ item.name }}
+      </mat-option>
+    }
+  </mat-select>
+</mat-form-field>
+
+Selected: {{ selectedItem() | json }}
+
+<p style="margin-top: 400px">
+  <button mat-flat-button (click)="changeTheItemsIncludingTheDefaultOnes()">
+    Change the source (including the previous items)
+  </button>
+</p>
+
+<p>
+  <button mat-flat-button (click)="changeTheItemsExcludingTheDefaultOnes()">
+    Change the source (excluding)
+  </button>
+</p>
