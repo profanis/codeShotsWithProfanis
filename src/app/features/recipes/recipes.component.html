@@ -1,0 +1,26 @@
+<mat-form-field appearance="fill">
+  <mat-label>Search Recipes</mat-label>
+  <input
+    type="text"
+    matInput
+    [matAutocomplete]="auto"
+    [formControl]="searchInput"
+  />
+  @if (optionsResource.isLoading()) {
+    <mat-progress-bar mode="query"></mat-progress-bar>
+  }
+</mat-form-field>
+
+<mat-autocomplete #auto="matAutocomplete">
+  @for (option of optionsResource.value()?.recipes; track option) {
+    <mat-option [value]="option.name">{{ option.name }}</mat-option>
+  }
+
+  @if (
+    !optionsResource.isLoading() &&
+    optionsResource.value()?.recipes?.length === 0 &&
+    searchInput.value?.length
+  ) {
+    <mat-option disabled>No recipes found</mat-option>
+  }
+</mat-autocomplete>
