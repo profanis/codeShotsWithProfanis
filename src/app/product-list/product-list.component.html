@@ -1,0 +1,13 @@
+<button (click)="showHiddenSection()">Show hidden section</button>
+
+<div class="products-container">
+  @for (product of products(); track product; let i = $index) {
+    <app-product-card [title]="product.title"></app-product-card>
+  }
+</div>
+
+@if (hiddenSectionIsVisible()) {
+  <div #hiddenSection class="hidden-section">
+    <div>This is the hidden section</div>
+  </div>
+}
