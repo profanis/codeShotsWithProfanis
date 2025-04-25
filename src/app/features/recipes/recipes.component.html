@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill">
+<mat-form-field appearance="fill" style="width: 400px">
   <mat-label>Search Recipes</mat-label>
   <input
     type="text"
@@ -7,7 +7,7 @@
     [formControl]="searchInput"
   />
   @if (optionsResource.isLoading()) {
-    <mat-progress-bar mode="query"></mat-progress-bar>
+    <mat-progress-bar mode="query" />
   }
 </mat-form-field>
 
@@ -21,6 +21,12 @@
     optionsResource.value()?.recipes?.length === 0 &&
     searchInput.value?.length
   ) {
-    <mat-option disabled>No recipes found</mat-option>
+    <mat-option> No recipes found </mat-option>
   }
 </mat-autocomplete>
+
+@if (optionsResource.error()) {
+  <mat-error>
+    {{ optionsResource.error() | json }}
+  </mat-error>
+}
