@@ -1,6 +1,8 @@
-.box {
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
-  margin-bottom: 10px;
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }

@@ -2,7 +2,10 @@
 
 <div class="products-container">
   @for (product of products(); track product; let i = $index) {
-    <app-product-card [title]="product.title"></app-product-card>
+    <app-product-card
+      [title]="product.title"
+      [id]="product.id"
+    ></app-product-card>
   }
 </div>
 

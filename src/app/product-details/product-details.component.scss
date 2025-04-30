@@ -1,0 +1,41 @@
+.center-card {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.shadow-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-details-container {
+  display: flex;
+}
+
+.side-nav {
+  width: 200px;
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  margin-right: 8px;
+  mat-nav-list {
+    padding: 0;
+  }
+  a {
+    color: rgba(0, 0, 0, 0.87);
+    &:hover,
+    &.active {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
+.content {
+  flex: 1;
+}
+
+.product-title {
+  margin-bottom: 8px;
+  font-weight: normal;
+}

@@ -1,0 +1,39 @@
+<!-- ->{{productFromResolver | json}} -->
+@let product = productResource.value();
+<!-- Header -->
+@if (product) {
+  <mat-card class="center-card shadow-card">
+    <mat-card-content>
+      <div style="display: flex; align-items: center">
+        <img
+          src="https://placehold.co/150"
+          style="margin-right: 16px"
+          alt="Placeholder Image"
+        />
+        <div>
+          <h1 class="product-title" >
+            {{ product!.title }}
+          </h1>
+          <p>{{ product!.description }}</p>
+          <p>Price: {{ product!.price }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+}
+<!-- /Header -->
+<div class="product-details-container">
+  <mat-sidenav mode="side" opened>
+    <div class="side-nav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="color" [routerLinkActive]="'active'">Color</a>
+        <a mat-list-item routerLink="season" [routerLinkActive]="'active'">Season</a>
+        <a mat-list-item routerLink="style" [routerLinkActive]="'active'">Style</a>
+        <a mat-list-item routerLink="sale" [routerLinkActive]="'active'">Sale</a>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <div class="content">
+    <router-outlet [routerOutletData]="product"></router-outlet>
+  </div>
+</div>

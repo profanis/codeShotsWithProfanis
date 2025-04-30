@@ -1,66 +1,22 @@
 import { CommonModule } from '@angular/common';
-import {
-  afterRender,
-  afterRenderEffect,
-  ApplicationRef,
-  Component,
-  effect,
-  ElementRef,
-  inject,
-  NgZone,
-  signal,
-  viewChild,
-  ViewChildren,
-  viewChildren,
-} from '@angular/core';
-import { ProductCardComponent } from './product-card/product-card.component';
+import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [
+    RouterModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatButtonModule,
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'Code Shots With Profanis - Like and Subscribe :)';
-  boxes = viewChildren('box', { read: ElementRef });
-  counter = signal(0);
-
-  constructor() {
-    // effect(() => {
-    //   this.forceLayoutThrashing();
-    // });
-
-    afterRenderEffect({
-      write: () => {
-        for (let i = 0; i < 100; i++) {
-          this.boxes().forEach((box) => {
-            box.nativeElement.style.width = Math.random() * 200 + 'px';
-          });
-        }
-      },
-      read: () => {
-        for (let i = 0; i < 100; i++) {
-          this.boxes()!.forEach((box) => {
-            const width = box.nativeElement.offsetWidth; // This forces layout!
-            console.log(width);
-          });
-        }
-      },
-    });
-  }
-
-  // forceLayoutThrashing() {
-  //   // Force layout thrashing:
-  //   for (let i = 0; i < 100; i++) {
-  //     this.boxes()!.forEach((box) => {
-  //       box.nativeElement.style.width = Math.random() * 200 + 'px';
-  //       // read a style that depends on new layout changes
-  //       const width = box.nativeElement.offsetWidth; // This forces layout!
-  //       console.log(width);
-  //     });
-  //   }
-  // }
-}
+export class AppComponent {}
