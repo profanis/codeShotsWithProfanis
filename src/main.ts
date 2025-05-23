@@ -20,22 +20,22 @@ const routes: Routes = [
   {
     path: 'products/:id',
     component: ProductDetailsComponent,
-    resolve: {
-      product: (route: ActivatedRouteSnapshot) => {
-        const productsService = inject(ProductsApiService);
-        const productId = route.params.id;
-        return productsService.getProduct(productId);
-      },
-    },
+    // resolve: {
+    //   product: (route: ActivatedRouteSnapshot) => {
+    //     const productsService = inject(ProductsApiService);
+    //     const productId = route.params.id;
+    //     return productsService.getProduct(productId);
+    //   },
+    // },
     children: [
+      // Using a service
+      { path: 'sale', component: SaleComponent },
+      // Using resolver
+      { path: 'season', component: SeasonComponent },
       // Using custom injection token
       { path: 'style', component: StyleComponent },
       // Using ROUTER_OUTLET_DATA
       { path: 'color', component: ColorComponent },
-      // Using resolver
-      { path: 'season', component: SeasonComponent },
-      // Using a service
-      { path: 'sale', component: SaleComponent },
     ],
   },
 ];

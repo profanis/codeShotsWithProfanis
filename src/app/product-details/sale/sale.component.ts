@@ -8,5 +8,6 @@ import { ProductsState } from 'src/app/product.state';
   imports: [JsonPipe],
 })
 export class SaleComponent {
-  productState = inject(ProductsState);
+  private productsState = inject(ProductsState);
+  product = this.productsState.product;
 }

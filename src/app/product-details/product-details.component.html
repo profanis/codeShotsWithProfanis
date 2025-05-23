@@ -1,4 +1,3 @@
-<!-- ->{{productFromResolver | json}} -->
 @let product = productResource.value();
 <!-- Header -->
 @if (product) {
@@ -11,7 +10,7 @@
           alt="Placeholder Image"
         />
         <div>
-          <h1 class="product-title" >
+          <h1 class="product-title">
             {{ product!.title }}
           </h1>
           <p>{{ product!.description }}</p>
@@ -26,10 +25,18 @@
   <mat-sidenav mode="side" opened>
     <div class="side-nav">
       <mat-nav-list>
-        <a mat-list-item routerLink="color" [routerLinkActive]="'active'">Color</a>
-        <a mat-list-item routerLink="season" [routerLinkActive]="'active'">Season</a>
-        <a mat-list-item routerLink="style" [routerLinkActive]="'active'">Style</a>
-        <a mat-list-item routerLink="sale" [routerLinkActive]="'active'">Sale</a>
+        <a mat-list-item routerLink="sale" [routerLinkActive]="'active'"
+          >Sale</a
+        >
+        <a mat-list-item routerLink="season" [routerLinkActive]="'active'"
+          >Season</a
+        >
+        <a mat-list-item routerLink="style" [routerLinkActive]="'active'"
+          >Style</a
+        >
+        <a mat-list-item routerLink="color" [routerLinkActive]="'active'"
+          >Color</a
+        >
       </mat-nav-list>
     </div>
   </mat-sidenav>
