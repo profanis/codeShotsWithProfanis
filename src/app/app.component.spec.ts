@@ -1,34 +1,66 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { createComponentFactory } from '@ngneat/spectator/jest';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-    }).compileComponents();
+  const createComponent = createComponentFactory({
+    component: AppComponent,
   });
 
+  const testSetup = (props?: {}) => {
+    const spectator = createComponent({
+      providers: [],
+      props: {},
+    });
+
+    const component = spectator.component;
+
+    return { spectator, component };
+  };
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    // Arrange
+    const { component } = testSetup();
+
+    // Act
+
+    // Assert
+    expect(component).toBeTruthy();
   });
 
   it(`should have as title 'profanis-yt'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual(
-      'Code Shots With Profanis - Like and Subscribe :)'
+    // Arrange
+    const { component } = testSetup();
+
+    // Act
+
+    // Assert
+    expect(component.title).toEqual(
+      'Code Shots With Profanis - Like and Subscribe :)',
+    );
+  });
+
+  it(`should have as title 'Code Shots With Profanis - Like and Subscribe :)'`, () => {
+    // Arrange
+    const { component } = testSetup();
+
+    // Act
+
+    // Assert
+    expect(component.title).toEqual(
+      'Code Shots With Profanis - Like and Subscribe :)',
     );
   });
 
   it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain(
-      'Code Shots With Profanis - Like and Subscribe :) app is running!'
+    // Arrange
+    const { spectator } = testSetup();
+
+    // Act
+    spectator.detectChanges();
+
+    // Assert
+    expect(spectator.query('.content span')!.textContent).toContain(
+      'Code Shots With Profanis - Like and Subscribe :) app is running!',
     );
   });
 });
