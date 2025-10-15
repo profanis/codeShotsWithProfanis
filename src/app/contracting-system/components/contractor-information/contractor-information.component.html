@@ -1,0 +1,51 @@
+<mat-card class="card__container card__container--large">
+  <mat-card-title>Contractor Information</mat-card-title>
+  <mat-form-field>
+    <mat-label>Contractor's Full Name or Company Name</mat-label>
+    <input
+      matInput
+      name="contractorName"
+      [control]="contractorInformation().contractorName"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Contractor's Business License Number</mat-label>
+    <input
+      matInput
+      name="contractorLicense"
+      [control]="contractorInformation().contractorLicenseNumber"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Primary Contact Person</mat-label>
+    <input
+      matInput
+      name="contractorContact"
+      [control]="contractorInformation().contractorContact"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Contractor's Address</mat-label>
+    <input
+      matInput
+      name="contractorAddress"
+      [control]="contractorInformation().contractorAddress"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Contact Phone Number</mat-label>
+    <input
+      matInput
+      name="contractorPhone"
+      [control]="contractorInformation().contractorPhone"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input
+      matInput
+      name="contractorEmail"
+      [control]="contractorInformation().contractorEmail"
+    />
+  </mat-form-field>
+</mat-card>

@@ -1,0 +1,68 @@
+<mat-card class="card__container card__container--large">
+  <mat-card-title>Scope of Work</mat-card-title>
+  <mat-form-field>
+    <mat-label>Detailed Description of Services</mat-label>
+    <textarea [control]="scopeOfWork().scopeDescription"></textarea>
+  </mat-form-field>
+
+  <h3>Deliverables</h3>
+  <button
+    matButton="outlined"
+    type="button"
+    style="margin-bottom: 16px"
+    (click)="addDeliverable()"
+  >
+    Add Deliverable +
+  </button>
+  @for (deliverable of scopeOfWork().deliverables; track $index) {
+    <div class="flex gap--3">
+      <mat-form-field>
+        <mat-label>Deliverable Name</mat-label>
+        <input matInput [control]="deliverable.name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Deliverable Description</mat-label>
+        <input matInput [control]="deliverable.description" />
+      </mat-form-field>
+      <button mat-icon-button type="button" (click)="removeDeliverable($index)">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+  }
+
+  <h3>Project Milestones</h3>
+  <button
+    mat-button
+    matButton="outlined"
+    type="button"
+    style="margin-bottom: 16px"
+    (click)="addMilestone()"
+  >
+    Add Milestone +
+  </button>
+
+  @for (milestone of scopeOfWork().milestones; track $index) {
+    <div class="flex gap--3">
+      <mat-form-field>
+        <mat-label>Milestone Description</mat-label>
+        <input matInput [control]="milestone.description" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Target Completion Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="milestoneDatePicker"
+          [control]="milestone.date"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="milestoneDatePicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #milestoneDatePicker></mat-datepicker>
+      </mat-form-field>
+      <button mat-icon-button type="button" (click)="removeMilestone($index)">
+        <mat-icon>remove_circle</mat-icon>
+      </button>
+    </div>
+  }
+</mat-card>

@@ -1,0 +1,12 @@
+{{loginForm.$state.submittedStatus() | json}}
+<form (submit)="$event.preventDefault();">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" [field]="loginForm.username" />
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [field]="loginForm.password" />
+  </div>
+  <button type="submit" (click)="submit()" [disabled]="!loginForm.$state.valid()">Login</button>
+</form>

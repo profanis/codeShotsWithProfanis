@@ -1,0 +1,53 @@
+<mat-card class="card__container">
+  <form (submit)="submitForm($event)">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        [control]="loginForm.email"
+        type="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+      />
+      @for (error of loginForm.email().errors(); track error.kind) {
+        <mat-error>{{ error.message }}</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [control]="loginForm.password"
+        type="password"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+      />
+      @for (error of loginForm.password().errors(); track error.kind) {
+        <mat-error>{{ error.message }}</mat-error>
+      }
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="loginForm().invalid() || loginForm().submitting()"
+    >
+      @if (loginForm().submitting()) {
+        <mat-progress-spinner
+          diameter="20"
+          mode="indeterminate"
+          color="accent"
+          class="button-spinner"
+        ></mat-progress-spinner>
+      } @else {
+        Login
+      }
+    </button>
+
+    @for (error of loginForm().errors(); track error.kind) {
+      <mat-error>{{ error.message }}</mat-error>
+    }
+  </form>
+</mat-card>

@@ -1,0 +1,92 @@
+{{ myForm().value() | json }}
+
+<form (submit)="$event.preventDefault()">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [control]="myForm.name" />
+  </div>
+
+  <div>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" [control]="myForm.age" />
+  </div>
+
+  <div>
+    <label for="country">Country:</label>
+    <select id="country" name="country" [control]="myForm.country">
+      <option value="" selected>Select your country</option>
+      <option value="usa">USA</option>
+      <option value="canada">Canada</option>
+      <option value="uk">UK</option>
+      <option value="australia">Australia</option>
+    </select>
+  </div>
+
+  <!-- <div>
+    <label for="birthday-month">Birthday:</label>
+    <div>
+      <input
+        type="number"
+        id="birthday-day"
+        name="birthdayDay"
+        placeholder="DD"
+        min="1"
+        max="31"
+        [control]="myForm.birthdate.day"
+      />
+      <input
+        type="number"
+        id="birthday-month"
+        name="birthdayMonth"
+        placeholder="MM"
+        min="1"
+        max="12"
+        [control]="myForm.birthdate.month"
+      />
+
+      <input
+        type="number"
+        id="birthday-year"
+        name="birthdayYear"
+        placeholder="YYYY"
+        min="1900"
+        max="2100"
+        [control]="myForm.birthdate.year"
+      />
+    </div>
+  </div> -->
+
+  <app-hobbies-form [control]="myForm.hobbies" />
+  <!-- <div>
+    <label for="hobbies">Hobbies:</label>
+    @for (hobby of myForm.hobbies; track $index) {
+      <div>
+        <label>Name:</label>
+        <input type="text" [control]="hobby.name" />
+      </div>
+      <div>
+        <label>Description:</label>
+        <input type="text" [control]="hobby.description" />
+      </div>
+      @if (hobby().errors().length) {
+        {{ hobby().errors() | json }}
+      }
+    }
+
+    <button type="button" (click)="addHobby()">Add Hobby</button>
+  </div> -->
+
+  <div>
+    <label>
+      <input type="checkbox" id="terms" name="terms" [control]="myForm.terms" />
+      I have read and agree to the terms and conditions
+    </label>
+  </div>
+
+  <button [disabled]="!myForm().valid()" type="submit" (click)="submit()">
+    Register
+  </button>
+</form>
+
+<!-- {{myForm.birthdate.month().errors()| json}} -->
+{{ myForm().errors() | json }}

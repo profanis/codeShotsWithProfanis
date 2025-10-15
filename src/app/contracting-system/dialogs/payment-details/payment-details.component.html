@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Payment Details</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Total Contract Amount</mat-label>
+    <input matInput type="number" name="totalAmount" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Currency</mat-label>
+    <mat-select name="currency">
+      <mat-option value="USD">USD</mat-option>
+      <mat-option value="EUR">EUR</mat-option>
+      <mat-option value="GBP">GBP</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Payment Schedule</mat-label>
+    <mat-select name="paymentSchedule">
+      <mat-option value="upfront">Upfront</mat-option>
+      <mat-option value="completion">On Completion</mat-option>
+      <mat-option value="milestone">Per Milestone</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Invoice Frequency</mat-label>
+    <input matInput name="invoiceFrequency" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
