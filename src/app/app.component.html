@@ -4,3 +4,11 @@
 <app-contract-form />
 
 <!-- {{ timerComputed() }} -->
+<p>
+  <app-star-rating [value]="4" />
+</p>
+<p>
+  <app-star-rating [control]="homeForm.rating" />
+</p>
+
+{{ homeForm.rating().value() }}

@@ -1,4 +1,4 @@
-import { Component, computed, inject, Injector } from '@angular/core';
+import { Component, computed, inject, Injector, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { RegistrationComponent } from './signal-forms/registration/registration.component';
@@ -6,13 +6,22 @@ import { ContractFormComponent } from './contracting-system/pages/contract-form/
 import { BehaviorSubject, interval, map } from 'rxjs';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { Control, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [RegistrationComponent, ContractFormComponent, LoginComponent, RegisterComponent],
+  imports: [
+    RegistrationComponent,
+    ContractFormComponent,
+    LoginComponent,
+    RegisterComponent,
+    StarRatingComponent,
+    Control
+  ],
 })
 export class AppComponent {
   timer$ = interval(1000).pipe(map((value) => `Timer: ${value}`));
@@ -24,6 +33,13 @@ export class AppComponent {
   sss = toSignal(this.value$, {
     injector: this.injector,
   });
+
+  homeForm = form(
+    signal({
+      title: '',
+      rating: 0,
+    }),
+  );
 
   timerComputed = computed(() => {
     return this.sss();

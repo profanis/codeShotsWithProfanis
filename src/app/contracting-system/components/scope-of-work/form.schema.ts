@@ -10,17 +10,12 @@ import {
   ScopeOfWorkFormModel,
 } from '../../pages/contract-form/contract-form.component';
 
-export const scopeOfWorkDeliverableSchema = schema<ScopeOfWorkDeliverable>(
+const scopeOfWorkDeliverableSchema = schema<ScopeOfWorkDeliverable>(
   (path: FieldPath<ScopeOfWorkDeliverable>) => {
     //required(path.name);
-    applyWhen(
-      path,
-      (value) => !(value.value().description && value.value().name),
-      (pathWhenTrue) => {
-        required(pathWhenTrue.name);
-        required(pathWhenTrue.description);
-      },
-    );
+    required(path.description, {
+      when: (ctx) => ctx.valueOf(path.name).length > 0,
+    });
   },
 );
 
