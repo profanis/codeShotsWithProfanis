@@ -9,7 +9,7 @@
           matInput
           type="email"
           name="email"
-          [control]="registrationForm.email"
+          [field]="registrationForm.email"
         />
       </mat-form-field>
 
@@ -19,7 +19,7 @@
           matInput
           type="password"
           name="password"
-          [control]="registrationForm.password"
+          [field]="registrationForm.password"
         />
       </mat-form-field>
 
@@ -29,7 +29,7 @@
           matInput
           type="password"
           name="confirmPassword"
-          [control]="registrationForm.confirmPassword"
+          [field]="registrationForm.confirmPassword"
         />
         @for (
           error of registrationForm.confirmPassword().errors();
@@ -43,7 +43,7 @@
 
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Country</mat-label>
-        <mat-select name="country" [control]="registrationForm.country">
+        <mat-select name="country" [field]="registrationForm.country">
           <mat-option value="Poland">Poland</mat-option>
           <mat-option value="Greece">Greece</mat-option>
           <mat-option value="US">US</mat-option>
@@ -57,7 +57,7 @@
             matInput
             type="text"
             name="state"
-            [control]="registrationForm.state"
+            [field]="registrationForm.state"
           />
         </mat-form-field>
       }

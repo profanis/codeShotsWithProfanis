@@ -6,7 +6,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { Control, Field } from '@angular/forms/signals';
+import { Field, FieldTree } from '@angular/forms/signals';
 import { ScopeOfWorkFormModel } from '../../pages/contract-form/contract-form.component';
 import { FormsModule } from '@angular/forms';
 
@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatButtonModule,
     MatIconModule,
-    Control,
+    Field,
     FormsModule,
     MatCardModule,
   ],
@@ -27,14 +27,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './scope-of-work.component.scss',
 })
 export class ScopeOfWorkComponent {
-  scopeOfWork = input.required<Field<ScopeOfWorkFormModel>>();
+  scopeOfWork = input.required<FieldTree<ScopeOfWorkFormModel>>();
 
   addDeliverable() {
     this.scopeOfWork()
       .deliverables()
-      .value.update((current) => [
-        ...current, { name: '', description: '' }
-      ]);
+      .value.update((current) => [...current, { name: '', description: '' }]);
   }
 
   removeDeliverable(index: number) {

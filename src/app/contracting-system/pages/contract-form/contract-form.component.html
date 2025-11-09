@@ -1,6 +1,6 @@
 <mat-form-field>
   <mat-label>Deliverable Description</mat-label>
-  <input matInput [control]="myForm.title" placeholder="Contract Title" />
+  <input matInput [field]="myForm.title" placeholder="Contract Title" />
 </mat-form-field>
 
 <app-contractor-information
@@ -10,7 +10,7 @@
 <app-scope-of-work [scopeOfWork]="myForm.scopeOfWork" />
 <app-project-overview [projectOverview]="myForm.projectOverview" />
 <app-terms-conditions [termsConditions]="myForm.termsConditions" />
-<button mat-raised-button color="primary" (click)="submit()">Submit</button>
+<!-- <button mat-raised-button color="primary" (click)="submit()">Submit</button> -->
 <!-- <button mat-raised-button color="primary" (click)="openPaymentDialog()">
   Configure Payment Details
 </button> -->

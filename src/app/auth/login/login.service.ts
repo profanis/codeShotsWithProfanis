@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { delay, map, of, throwError } from 'rxjs';
-import { LoginFormModel } from './login.schema';
+import { LoginFormModel } from './login.component';
 
 @Injectable({
   providedIn: 'root',

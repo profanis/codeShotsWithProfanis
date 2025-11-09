@@ -1,6 +1,6 @@
 <mat-card class="card__container card__container--large">
   <mat-card-title>Terms & Conditions</mat-card-title>
-  <mat-checkbox [control]="termsConditions().termsAccepted"
+  <mat-checkbox [field]="termsConditions().termsAccepted"
     >Specify Custom Terms & Conditions</mat-checkbox
   >
 
@@ -8,7 +8,7 @@
     <h3>Confidentiality Agreement</h3>
     <mat-form-field>
       <mat-label>Confidentiality Level</mat-label>
-      <mat-select [control]="termsConditions().confidentialityLevel">
+      <mat-select [field]="termsConditions().confidentialityLevel">
         <mat-option value="none">None</mat-option>
         <mat-option value="standard">Standard</mat-option>
         <mat-option value="strict">Strict</mat-option>
@@ -16,9 +16,9 @@
     </mat-form-field>
 
     <h3>Liability Clause</h3>
-    <mat-slider min="0" max="100000" step="1000" discrete>
-      <input matSliderThumb [control]="termsConditions().liabilityClauses" />
-    </mat-slider>
+    <!-- <mat-slider min="0" max="100000" step="1000" discrete>
+      <input matSliderThumb [field]="termsConditions().liabilityClauses" />
+    </mat-slider> -->
 
     <h3>Termination Clause</h3>
     <mat-form-field>
@@ -27,7 +27,7 @@
         disabled="true"
         matInput
         type="number"
-        [control]="termsConditions().terminationClause"
+        [field]="termsConditions().terminationClause"
       />
     </mat-form-field>
   </div>

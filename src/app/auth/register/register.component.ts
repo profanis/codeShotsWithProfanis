@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { Control, form, required } from '@angular/forms/signals';
+import { Field, form, required } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,7 +33,7 @@ export interface RegisterFormModel {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    Control,
+    Field,
     MatSelectModule,
     MatOptionModule,
     MatRadioModule,

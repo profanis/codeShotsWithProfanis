@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PaymentDetailsComponent } from '../../dialogs/payment-details/payment-details.component';
 import { MatButtonModule } from '@angular/material/button';
 import {
-  Control,
+  Field,
   FieldPath,
   form,
   validate,
@@ -26,10 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import {
-  scopeOfWorkDeliverableSchema,
-  scopeOfWorkSchema,
-} from '../../components/scope-of-work/form.schema';
+import { scopeOfWorkSchema } from '../../components/scope-of-work/form.schema';
 
 export interface ProjectOverviewFormModel {
   projectName: string;
@@ -119,7 +116,7 @@ export interface ContractFormModel {
     ScopeOfWorkComponent,
     TermsConditionsComponent,
     SignatoriesComponent,
-    Control,
+    Field,
     JsonPipe,
     MatFormFieldModule,
     MatInputModule,

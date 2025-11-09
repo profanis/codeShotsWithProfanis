@@ -6,7 +6,7 @@
     <input
       matInput
       name="projectName"
-      [control]="projectOverview().projectName"
+      [field]="projectOverview().projectName"
     />
   </mat-form-field>
   <mat-form-field>
@@ -14,7 +14,7 @@
     <input
       matInput
       name="projectCode"
-      [control]="projectOverview().projectCode"
+      [field]="projectOverview().projectCode"
     />
   </mat-form-field>
   <mat-form-field>
@@ -24,7 +24,7 @@
       matInput
       [matDatepicker]="startDatePicker"
       name="startDate"
-      [control]="projectOverview().startDate"
+      [field]="projectOverview().startDate"
     />
     <mat-datepicker-toggle
       matSuffix
@@ -38,7 +38,7 @@
       matInput
       [matDatepicker]="endDatePicker"
       name="endDate"
-      [control]="projectOverview().endDate"
+      [field]="projectOverview().endDate"
     />
     <mat-datepicker-toggle
       matSuffix
@@ -51,7 +51,7 @@
     <input
       matInput
       name="projectLocation"
-      [control]="projectOverview().projectLocation"
+      [field]="projectOverview().projectLocation"
     />
   </mat-form-field>
   <!-- TODO(FP): this throws an error in the console -->
@@ -60,7 +60,7 @@
     <textarea
       matInput
       name="projectDescription"
-      [control]="myForm.projectDescription"
+      [field]="myForm.projectDescription"
     ></textarea>
   </mat-form-field> -->
 </mat-card>

@@ -11,8 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {
-  Control,
   Field,
+  FieldTree,
   form,
   FormUiControl,
   FormValueControl,
@@ -27,12 +27,12 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    Control,
+    Field,
     MatCardModule,
   ],
   templateUrl: './project-overview.component.html',
   styleUrl: './project-overview.component.scss',
 })
 export class ProjectOverviewComponent {
-  projectOverview = input.required<Field<ProjectOverviewFormModel>>();
+  projectOverview = input.required<FieldTree<ProjectOverviewFormModel>>();
 }

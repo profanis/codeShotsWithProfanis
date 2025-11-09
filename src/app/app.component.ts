@@ -1,13 +1,12 @@
 import { Component, computed, inject, Injector, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 
-import { RegistrationComponent } from './signal-forms/registration/registration.component';
 import { ContractFormComponent } from './contracting-system/pages/contract-form/contract-form.component';
 import { BehaviorSubject, interval, map } from 'rxjs';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
-import { Control, form } from '@angular/forms/signals';
+import { Field, form } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +14,11 @@ import { Control, form } from '@angular/forms/signals';
   styleUrls: ['./app.component.scss'],
   standalone: true,
   imports: [
-    RegistrationComponent,
     ContractFormComponent,
     LoginComponent,
     RegisterComponent,
     StarRatingComponent,
-    Control
+    Field,
   ],
 })
 export class AppComponent {

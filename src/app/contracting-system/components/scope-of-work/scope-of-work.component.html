@@ -1,9 +1,9 @@
 <mat-card class="card__container card__container--large">
   <mat-card-title>Scope of Work</mat-card-title>
-  <mat-form-field>
+  <!-- <mat-form-field>
     <mat-label>Detailed Description of Services</mat-label>
-    <textarea [control]="scopeOfWork().scopeDescription"></textarea>
-  </mat-form-field>
+    <textarea [field]="scopeOfWork().scopeDescription"></textarea>
+  </mat-form-field> -->
 
   <h3>Deliverables</h3>
   <button
@@ -18,11 +18,11 @@
     <div class="flex gap--3">
       <mat-form-field>
         <mat-label>Deliverable Name</mat-label>
-        <input matInput [control]="deliverable.name" />
+        <input matInput [field]="deliverable.name" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Deliverable Description</mat-label>
-        <input matInput [control]="deliverable.description" />
+        <input matInput [field]="deliverable.description" />
       </mat-form-field>
       <button mat-icon-button type="button" (click)="removeDeliverable($index)">
         <mat-icon>remove_circle</mat-icon>
@@ -45,14 +45,14 @@
     <div class="flex gap--3">
       <mat-form-field>
         <mat-label>Milestone Description</mat-label>
-        <input matInput [control]="milestone.description" />
+        <input matInput [field]="milestone.description" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Target Completion Date</mat-label>
         <input
           matInput
           [matDatepicker]="milestoneDatePicker"
-          [control]="milestone.date"
+          [field]="milestone.date"
         />
         <mat-datepicker-toggle
           matSuffix

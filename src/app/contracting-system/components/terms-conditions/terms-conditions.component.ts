@@ -7,7 +7,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Control, Field } from '@angular/forms/signals';
+import { Field, FieldTree } from '@angular/forms/signals';
 import { TermsConditionsFormModel } from '../../pages/contract-form/contract-form.component';
 import { MatCardModule } from '@angular/material/card';
 
@@ -22,12 +22,12 @@ import { MatCardModule } from '@angular/material/card';
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
-    Control,
+    Field,
     MatCardModule,
   ],
   templateUrl: './terms-conditions.component.html',
   styleUrl: './terms-conditions.component.scss',
 })
 export class TermsConditionsComponent {
-  termsConditions = input.required<Field<TermsConditionsFormModel>>();
+  termsConditions = input.required<FieldTree<TermsConditionsFormModel>>();
 }
