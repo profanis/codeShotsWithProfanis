@@ -69,6 +69,6 @@ export class RegisterComponent {
 
   resetForm() {
     this.registrationForm().reset();
-    this.formModel.set(this.defaultValues);
+    // this.formModel.set(this.defaultValues);
   }
 }

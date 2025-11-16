@@ -10,7 +10,6 @@ import { PaymentDetailsComponent } from '../../dialogs/payment-details/payment-d
 import { MatButtonModule } from '@angular/material/button';
 import {
   Field,
-  FieldPath,
   form,
   validate,
   schema,

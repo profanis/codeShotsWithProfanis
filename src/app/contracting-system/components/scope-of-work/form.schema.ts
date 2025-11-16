@@ -1,9 +1,9 @@
 import {
   schema,
-  FieldPath,
   applyWhen,
   required,
   applyEach,
+  SchemaPathTree,
 } from '@angular/forms/signals';
 import {
   ScopeOfWorkDeliverable,
@@ -11,16 +11,16 @@ import {
 } from '../../pages/contract-form/contract-form.component';
 
 const scopeOfWorkDeliverableSchema = schema<ScopeOfWorkDeliverable>(
-  (path: FieldPath<ScopeOfWorkDeliverable>) => {
+  (path: SchemaPathTree<ScopeOfWorkDeliverable>) => {
     //required(path.name);
     required(path.description, {
-      when: (ctx) => ctx.valueOf(path.name).length > 0,
+      when: (ctx) => ctx.valueOf<string>(path.name).length > 0,
     });
   },
 );
 
 export const scopeOfWorkSchema = schema<ScopeOfWorkFormModel>(
-  (path: FieldPath<ScopeOfWorkFormModel>) => {
+  (path: SchemaPathTree<ScopeOfWorkFormModel>) => {
     required(path.scopeDescription);
     applyEach(path.deliverables, scopeOfWorkDeliverableSchema);
   },

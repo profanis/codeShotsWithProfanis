@@ -31,12 +31,12 @@ export const registerFormSchema = schema<RegisterFormModel>((field) => {
       ? undefined
       : [
           customError({
-            field: ctx.fieldOf(field.password),
+            field: ctx.fieldTreeOf(field.password),
             kind: 'passwordMismatch',
             message: 'Passwords do not match',
           }),
           customError({
-            field: ctx.fieldOf(field.confirmPassword),
+            field: ctx.fieldTreeOf(field.confirmPassword),
             kind: 'passwordMismatch',
             message: 'Passwords do not match',
           }),
