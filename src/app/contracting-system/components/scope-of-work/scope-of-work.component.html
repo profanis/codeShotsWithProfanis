@@ -49,11 +49,13 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Target Completion Date</mat-label>
+        <!--
+        TODO(FP): Fix datepicker binding
         <input
           matInput
           [matDatepicker]="milestoneDatePicker"
           [field]="milestone.date"
-        />
+        /> -->
         <mat-datepicker-toggle
           matSuffix
           [for]="milestoneDatePicker"

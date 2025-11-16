@@ -3,29 +3,21 @@
 
   <mat-form-field>
     <mat-label>Project Name</mat-label>
-    <input
-      matInput
-      name="projectName"
-      [field]="projectOverview().projectName"
-    />
+    <input matInput [field]="projectOverview().projectName" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Project ID / Code</mat-label>
-    <input
-      matInput
-      name="projectCode"
-      [field]="projectOverview().projectCode"
-    />
+    <input matInput [field]="projectOverview().projectCode" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Project Start Date</mat-label>
     <!-- TODO(FP): The datepicker doesn't set the value in the form control. It set only if we type a value in the field -->
-    <input
+    <!-- <input
       matInput
       [matDatepicker]="startDatePicker"
       name="startDate"
       [field]="projectOverview().startDate"
-    />
+    /> -->
     <mat-datepicker-toggle
       matSuffix
       [for]="startDatePicker"
@@ -34,12 +26,14 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Project End Date</mat-label>
+    <!--
+    TODO(FP): Fix the datepicker binding
     <input
       matInput
       [matDatepicker]="endDatePicker"
       name="endDate"
       [field]="projectOverview().endDate"
-    />
+    /> -->
     <mat-datepicker-toggle
       matSuffix
       [for]="endDatePicker"
@@ -48,11 +42,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Project Location</mat-label>
-    <input
-      matInput
-      name="projectLocation"
-      [field]="projectOverview().projectLocation"
-    />
+    <input matInput [field]="projectOverview().projectLocation" />
   </mat-form-field>
   <!-- TODO(FP): this throws an error in the console -->
   <!-- <mat-form-field>

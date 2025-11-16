@@ -3,12 +3,13 @@ import { Field, form, required } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { registrationSchema } from './registration.schema';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { JsonPipe } from '@angular/common';
 import { MatCard } from '@angular/material/card';
+import { registerFormSchema } from './register.schema';
+import { CustomTextareaComponent } from '../../components/custom-textarea/custom-textarea/custom-textarea.component';
 
 export interface LoginFormModel {
   username: string;
@@ -20,8 +21,8 @@ export interface RegisterFormModel {
   password: string;
   confirmPassword: string;
   country: string;
-  gender: string;
   state: string;
+  textarea: string[];
 }
 
 @Component({
@@ -39,45 +40,35 @@ export interface RegisterFormModel {
     MatRadioModule,
     MatCard,
     JsonPipe,
+    CustomTextareaComponent,
   ],
 })
 export class RegisterComponent {
-  formModel = signal<RegisterFormModel>({
+  private readonly defaultValues: RegisterFormModel = {
     email: '',
     password: '',
     confirmPassword: '',
     country: '',
-    gender: '',
     state: '',
-  });
+    textarea: [''],
+  };
+  formModel = signal<RegisterFormModel>(this.defaultValues);
 
-  registrationForm = form(this.formModel, registrationSchema);
+  // passwordType = signal<'password' | 'text'>('password');
 
-  constructor() {
-    this.registrationForm().value();
+  // togglePasswordType() {
+  //   this.passwordType.set(
+  //     this.passwordType() === 'password' ? 'text' : 'password',
+  //   );
+  // }
+
+  registrationForm = form<RegisterFormModel>(
+    this.formModel,
+    registerFormSchema,
+  );
+
+  resetForm() {
+    this.registrationForm().reset();
+    this.formModel.set(this.defaultValues);
   }
-
-  //   export interface LoginFormModel {
-  //   username: string;
-  //   password: string;
-  // }
-
-  //   loginForm = signal({
-  //     username: '',
-  //     password: '',
-  //   });
-
-  // constructor() {
-  //   setTimeout(() => {
-  //     this.formModel.set({
-  //       username: 'profanis',
-  //       email: 'profanis@example.com',
-  //       password: 'password',
-  //       confirmPassword: 'password',
-  //       country: 'Poland',
-  //       gender: 'Male',
-  //       state: 'Mazowieckie',
-  //     });
-  //   }, 3000);
-  // }
 }

@@ -1,3 +1,4 @@
+{{ registrationForm().value() | json }}
 <mat-card class="card__container">
   <form class="register-form" autocomplete="off">
     <div class="form-fields">
@@ -5,22 +6,12 @@
 
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Email</mat-label>
-        <input
-          matInput
-          type="email"
-          name="email"
-          [field]="registrationForm.email"
-        />
+        <input matInput type="email" [field]="registrationForm.email" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Password</mat-label>
-        <input
-          matInput
-          type="password"
-          name="password"
-          [field]="registrationForm.password"
-        />
+        <input matInput [field]="registrationForm.password" />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
@@ -28,22 +19,19 @@
         <input
           matInput
           type="password"
-          name="confirmPassword"
           [field]="registrationForm.confirmPassword"
         />
         @for (
           error of registrationForm.confirmPassword().errors();
           track error.kind
         ) {
-          @if (error.kind === "confirmationPassword") {
-            <mat-error>Passwords do not match!</mat-error>
-          }
+          <mat-error> {{ error.message }} </mat-error>
         }
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Country</mat-label>
-        <mat-select name="country" [field]="registrationForm.country">
+        <mat-select [field]="registrationForm.country">
           <mat-option value="Poland">Poland</mat-option>
           <mat-option value="Greece">Greece</mat-option>
           <mat-option value="US">US</mat-option>
@@ -53,29 +41,25 @@
       @if (!registrationForm.state().hidden()) {
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>State</mat-label>
-          <input
-            matInput
-            type="text"
-            name="state"
-            [field]="registrationForm.state"
-          />
+          <input matInput type="text" [field]="registrationForm.state" />
         </mat-form-field>
       }
 
-      @for (error of registrationForm().errors(); track error.kind) {
-        @if (error.kind === "confirmationPassword") {
-          <mat-error>Passwords do not match!</mat-error>
-        }
-      }
+      {{ registrationForm.textarea().value() | json }}
+      <app-custom-textarea
+        [field]="registrationForm.textarea"
+      ></app-custom-textarea>
+
       <div
         class="actions"
         style="display: flex; justify-content: flex-end; margin-top: 16px"
       >
+        <button type="button" (click)="resetForm()">Reset</button>
         <button
           mat-raised-button
           color="primary"
-          [disabled]="registrationForm().invalid()"
           type="button"
+          [disabled]="registrationForm().invalid()"
         >
           Register
         </button>
