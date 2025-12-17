@@ -1,0 +1,51 @@
+{{formGroup().value | json}}
+<div [formGroup]="formGroup()">
+  <custom-input-wrapper label="Street">
+    <input
+      id="street"
+      type="text"
+      formControlName="street"
+      placeholder="Enter street name"
+    />
+  </custom-input-wrapper>
+
+  <custom-input-wrapper label="Number">
+    <input
+      id="number"
+      type="text"
+      formControlName="number"
+      placeholder="Enter number"
+    />
+  </custom-input-wrapper>
+
+  <custom-input-wrapper label="Postal Code">
+    <input
+      id="postalCode"
+      type="text"
+      formControlName="postalCode"
+      placeholder="Enter postal code"
+    />
+  </custom-input-wrapper>
+
+  <ng-container formGroupName="nestedFormGroup">
+    <custom-input-wrapper label="Nested Field">
+      <input
+        id="nestedField"
+        type="text"
+        formControlName="nestedField"
+        placeholder="Enter nested field"
+      />
+    </custom-input-wrapper>
+
+    <ng-container formGroupName="deepNestedGroup">
+      <custom-input-wrapper label="Deep Nested Field">
+        <input
+          id="deepField"
+          type="text"
+          formControlName="deepField"
+          placeholder="Enter deep nested field"
+        />
+      </custom-input-wrapper>
+    </ng-container>
+  </ng-container>
+</div>

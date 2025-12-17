@@ -1,0 +1,42 @@
+<mat-card class="card__container">
+  <form
+    class="register-form"
+    autocomplete="off"
+    (submit)="$event.preventDefault(); submitForm()"
+  >
+    <div class="form-fields">
+      <h2>Register</h2>
+
+      <!-- Username -->
+      <custom-input-wrapper label="Username">
+        <input
+          id="username"
+          type="text"
+          placeholder="Enter username"
+          [field]="userForm.userName"
+        />
+      </custom-input-wrapper>
+
+      <!-- Age -->
+      <custom-input-wrapper label="Age">
+        <custom-input
+          id="age"
+          type="number"
+          placeholder="Enter age"
+          [field]="userForm.age"
+        />
+      </custom-input-wrapper>
+
+      <app-contact-details [formGroup]="contactDetailsFormGroup" />
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="userForm().invalid()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-card>

@@ -1,0 +1,41 @@
+<mat-card class="card__container">
+  <form
+    class="register-form"
+    autocomplete="off"
+    [formGroup]="userProfileForm"
+    (submit)="$event.preventDefault(); submitForm()"
+  >
+    <div class="form-fields">
+      <h2>Register</h2>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" formControlName="firstName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" formControlName="lastName" />
+      </mat-form-field>
+
+      <app-contact-details
+        [formGroup]="userProfileForm.controls.contactDetails"
+      />
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!userProfileForm.valid"
+      >
+        Submit
+      </button>
+
+      <!-- <input
+        matInput
+        [type]="passwordType()"
+        [field]="registrationForm.password"
+      /> -->
+    </div>
+  </form>
+</mat-card>

@@ -1,4 +1,47 @@
-{{ registrationForm().value() | json }}
+<!-- {{ nameForm.first().value() }}
+{{ nameForm.last().value() }}
+<custom-input type="text" [field]="nameForm.first" />
+<custom-input type="text" [formControl]="nameModel().last" />
+{{ nameForm().valid() }}
+
+<fieldset>
+  <legend>Signal Form Only</legend>
+  {{ nameSignalFormOnly.name().value() }}
+  <custom-input type="text" [field]="nameSignalFormOnly.name" />
+  {{ nameSignalFormOnly().valid() }}
+</fieldset>
+
+<fieldset>
+  <legend>with custom wrapper</legend>
+  {{ nameSignalFormOnly.name().value() }}
+
+  <label>Name - Signal Forms</label>
+  <custom-input-wrapper>
+    <input type="text" [field]="nameSignalFormOnly.name" />
+  </custom-input-wrapper>
+
+  <label>Last Name - Reactive Forms</label>
+  <custom-input-wrapper>
+    <input type="text" [formControl]="nameModel().last" />
+  </custom-input-wrapper>
+</fieldset>
+
+<fieldset>
+  <legend>with custom wrapper and label</legend>
+  {{ nameForCustomLabelSignalFormOnly.name().value() }}
+
+  <label>Name - Signal Forms</label>
+  <custom-input-wrapper label="Name">
+    <input type="text" [field]="nameForCustomLabelSignalFormOnly.name" />
+  </custom-input-wrapper>
+
+  <label>Last Name - Reactive Forms</label>
+  <custom-input-wrapper label="Last Name">
+    <input type="text" [formControl]="nameModel().last" />
+  </custom-input-wrapper>
+</fieldset> -->
+
+<!-- {{ registrationForm().value() | json }} -->
 <mat-card class="card__container">
   <form class="register-form" autocomplete="off">
     <div class="form-fields">
@@ -44,6 +87,14 @@
           <input matInput type="text" [field]="registrationForm.state" />
         </mat-form-field>
       }
+
+      <!-- <app-contact-details [formGroup]="registrationForm.contactDetails" /> -->
+
+      <!-- <input
+        matInput
+        [type]="passwordType()"
+        [field]="registrationForm.password"
+      /> -->
 
       <div
         class="actions"
