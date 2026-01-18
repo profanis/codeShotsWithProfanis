@@ -11,18 +11,23 @@ import { NgControl, Validators } from '@angular/forms';
       flex-direction: column;
       margin-bottom: 16px;
     }
+
+    .label {
+      &--is-required {
+        &::after {
+          content: ' *';
+          color: red;
+        }
+      }
+    }
   `,
   template: `
     <div class="form-field" [class.invalid]="control().invalid">
-      <label>
+      <label [class.label--is-required]="isRequired()">
         @if (label()) {
           {{ label() }}
-          @if (isRequired()) {
-            <span class="required">*</span>
-          }
         }
       </label>
-
       <ng-content></ng-content>
 
       @if (control().invalid) {

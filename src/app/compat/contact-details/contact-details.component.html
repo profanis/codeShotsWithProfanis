@@ -1,4 +1,3 @@
-{{formGroup().value | json}}
 <div [formGroup]="formGroup()">
   <custom-input-wrapper label="Street">
     <input
@@ -6,6 +5,7 @@
       type="text"
       formControlName="street"
       placeholder="Enter street name"
+      autocomplete="off"
     />
   </custom-input-wrapper>
 
@@ -15,6 +15,7 @@
       type="text"
       formControlName="number"
       placeholder="Enter number"
+      autocomplete="off"
     />
   </custom-input-wrapper>
 
@@ -24,28 +25,7 @@
       type="text"
       formControlName="postalCode"
       placeholder="Enter postal code"
+      autocomplete="off"
     />
   </custom-input-wrapper>
-
-  <ng-container formGroupName="nestedFormGroup">
-    <custom-input-wrapper label="Nested Field">
-      <input
-        id="nestedField"
-        type="text"
-        formControlName="nestedField"
-        placeholder="Enter nested field"
-      />
-    </custom-input-wrapper>
-
-    <ng-container formGroupName="deepNestedGroup">
-      <custom-input-wrapper label="Deep Nested Field">
-        <input
-          id="deepField"
-          type="text"
-          formControlName="deepField"
-          placeholder="Enter deep nested field"
-        />
-      </custom-input-wrapper>
-    </ng-container>
-  </ng-container>
 </div>

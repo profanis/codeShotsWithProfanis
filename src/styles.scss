@@ -11,6 +11,10 @@
 
 .flex {
   display: flex;
+
+  &--column {
+    flex-direction: column;
+  }
 }
 
 .gap {
@@ -65,15 +69,17 @@
       outline: none;
       border-color: #3f51b5;
     }
-
-    &.ng-invalid.ng-touched {
-      border-color: #f44336;
-    }
   }
 
   .error {
     margin-top: 0.5rem;
     color: #f44336;
     font-size: 0.875rem;
+  }
+}
+
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid #f44336;
   }
 }
