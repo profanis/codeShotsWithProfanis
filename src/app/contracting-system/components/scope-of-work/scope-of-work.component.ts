@@ -6,7 +6,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { FormField, FieldTree } from '@angular/forms/signals';
 import { ScopeOfWorkFormModel } from '../../pages/contract-form/contract-form.component';
 import { FormsModule } from '@angular/forms';
 
@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatButtonModule,
     MatIconModule,
-    Field,
+    FormField,
     FormsModule,
     MatCardModule,
   ],

@@ -10,7 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { ContactDetailsComponent } from '../../contact-details/contact-details.component';
 import { CustomInputWrapper } from '../../interop/custom-input-wrapper';
-import { Field, form, required } from '@angular/forms/signals';
+import { FormField, form, required } from '@angular/forms/signals';
 import { ContactDetailsService } from '../../contact-details/contact-details.service';
 import { compatForm } from '@angular/forms/signals/compat';
 import { CustomInput } from '../../interop/custom-input.component';
@@ -29,8 +29,9 @@ import { CustomInput } from '../../interop/custom-input.component';
     ContactDetailsComponent,
     JsonPipe,
     CustomInputWrapper,
-    Field,
+    FormField,
     CustomInput,
+    FormField,
   ],
   templateUrl: './new-user-profile.component.html',
   styleUrl: './new-user-profile.component.scss',

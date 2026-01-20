@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PaymentDetailsComponent } from '../../dialogs/payment-details/payment-details.component';
 import { MatButtonModule } from '@angular/material/button';
 import {
-  Field,
+  FormField,
   form,
   validate,
   schema,
@@ -115,7 +115,7 @@ export interface ContractFormModel {
     ScopeOfWorkComponent,
     TermsConditionsComponent,
     SignatoriesComponent,
-    Field,
+    FormField,
     JsonPipe,
     MatFormFieldModule,
     MatInputModule,
@@ -124,6 +124,7 @@ export interface ContractFormModel {
     MatButtonModule,
     MatIconModule,
     FormsModule,
+    FormField,
   ],
   templateUrl: './contract-form.component.html',
   styleUrl: './contract-form.component.scss',

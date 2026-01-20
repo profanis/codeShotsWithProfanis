@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { FormField, FieldTree } from '@angular/forms/signals';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ContractorInformationFormModel } from '../../pages/contract-form/contract-form.component';
@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-contractor-information',
-  imports: [MatFormFieldModule, MatInputModule, Field, MatCardModule],
+  imports: [MatFormFieldModule, MatInputModule, FormField, MatCardModule],
   templateUrl: './contractor-information.component.html',
   styleUrl: './contractor-information.component.scss',
 })

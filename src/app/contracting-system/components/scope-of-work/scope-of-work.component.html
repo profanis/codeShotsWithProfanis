@@ -18,11 +18,11 @@
     <div class="flex gap--3">
       <mat-form-field>
         <mat-label>Deliverable Name</mat-label>
-        <input matInput [field]="deliverable.name" />
+        <input matInput [formField]="deliverable.name" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Deliverable Description</mat-label>
-        <input matInput [field]="deliverable.description" />
+        <input matInput [formField]="deliverable.description" />
       </mat-form-field>
       <button mat-icon-button type="button" (click)="removeDeliverable($index)">
         <mat-icon>remove_circle</mat-icon>
@@ -45,7 +45,7 @@
     <div class="flex gap--3">
       <mat-form-field>
         <mat-label>Milestone Description</mat-label>
-        <input matInput [field]="milestone.description" />
+        <input matInput [formField]="milestone.description" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Target Completion Date</mat-label>

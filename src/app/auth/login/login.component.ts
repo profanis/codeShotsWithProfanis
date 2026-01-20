@@ -1,11 +1,10 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
 import {
-  customError,
   email,
   form,
   required,
   submit,
-  Field,
+  FormField,
 } from '@angular/forms/signals';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,7 +22,7 @@ export interface LoginFormModel {
 @Component({
   selector: 'app-login',
   imports: [
-    Field,
+    FormField,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -61,11 +60,16 @@ export class LoginComponent {
         await firstValueFrom(this.loginService.login(form().value()));
         return undefined;
       } catch (error) {
-        return customError({
+        return {
           message: (error as Error).message,
           field: this.loginForm.email,
           kind: 'submit',
-        });
+        };
+        // return customError({
+        //   message: (error as Error).message,
+        //   field: this.loginForm.email,
+        //   kind: 'submit',
+        // });
       }
     });
   }

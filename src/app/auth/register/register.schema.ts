@@ -1,5 +1,4 @@
 import {
-  customError,
   email,
   hidden,
   required,
@@ -30,16 +29,16 @@ export const registerFormSchema = schema<RegisterFormModel>((field) => {
     return password === confirmPassword
       ? undefined
       : [
-          customError({
+          {
             field: ctx.fieldTreeOf(field.password),
             kind: 'passwordMismatch',
             message: 'Passwords do not match',
-          }),
-          customError({
+          },
+          {
             field: ctx.fieldTreeOf(field.confirmPassword),
             kind: 'passwordMismatch',
             message: 'Passwords do not match',
-          }),
+          },
         ];
   });
   required(field.country);

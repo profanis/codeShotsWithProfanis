@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {
-  Field,
+  FormField,
   FieldTree,
   form,
   FormUiControl,
@@ -27,7 +27,7 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    Field,
+    FormField,
     MatCardModule,
   ],
   templateUrl: './project-overview.component.html',

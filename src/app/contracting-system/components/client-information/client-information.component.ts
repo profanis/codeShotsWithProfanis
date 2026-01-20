@@ -2,12 +2,12 @@ import { Component, input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ClientInformationFormModel } from '../../pages/contract-form/contract-form.component';
-import { Field, FieldTree } from '@angular/forms/signals';
+import { FormField, FieldTree } from '@angular/forms/signals';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-client-information',
-  imports: [MatFormFieldModule, MatInputModule, Field, MatCardModule],
+  imports: [MatFormFieldModule, MatInputModule, FormField, MatCardModule],
   templateUrl: './client-information.component.html',
   styleUrl: './client-information.component.scss',
 })

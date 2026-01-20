@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideSignalFormsConfig({
       classes: {
         ...NG_STATUS_CLASSES,
-        'my-ng-invalid': (control) => control.invalid(),
+        'my-ng-invalid': (control) => control.state().invalid(),
       },
     }),
   ],

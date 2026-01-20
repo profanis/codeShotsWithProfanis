@@ -6,7 +6,7 @@ import { BehaviorSubject, interval, map } from 'rxjs';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
-import { Field, form } from '@angular/forms/signals';
+import { FormField, form } from '@angular/forms/signals';
 import { OldUserProfileComponent } from './compat/old-user-profile/old-user-profile/old-user-profile.component';
 import { NewUserProfileComponent } from './compat/new-user-profile/new-user-profile/new-user-profile.component';
 
@@ -20,7 +20,7 @@ import { NewUserProfileComponent } from './compat/new-user-profile/new-user-prof
     LoginComponent,
     RegisterComponent,
     StarRatingComponent,
-    Field,
+    FormField,
     OldUserProfileComponent,
     NewUserProfileComponent,
   ],

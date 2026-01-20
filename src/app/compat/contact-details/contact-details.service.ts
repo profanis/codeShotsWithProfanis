@@ -17,16 +17,7 @@ export class ContactDetailsService {
     return this.fb.group({
       street: ['', [Validators.required]],
       number: ['', [Validators.required]],
-      postalCode: [
-        '',
-        [Validators.required, Validators.pattern(/^\d{5}(-\d{4})?$/)],
-      ],
-      nestedFormGroup: this.fb.group({
-        nestedField: ['', [Validators.required]],
-        deepNestedGroup: this.fb.group({
-          deepField: ['', [Validators.required]],
-        }),
-      }),
+      postalCode: ['', [Validators.required]],
     });
   }
 }

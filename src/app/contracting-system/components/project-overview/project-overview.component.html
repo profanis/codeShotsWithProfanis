@@ -3,11 +3,11 @@
 
   <mat-form-field>
     <mat-label>Project Name</mat-label>
-    <input matInput [field]="projectOverview().projectName" />
+    <input matInput [formField]="projectOverview().projectName" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Project ID / Code</mat-label>
-    <input matInput [field]="projectOverview().projectCode" />
+    <input matInput [formField]="projectOverview().projectCode" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Project Start Date</mat-label>
@@ -42,7 +42,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Project Location</mat-label>
-    <input matInput [field]="projectOverview().projectLocation" />
+    <input matInput [formField]="projectOverview().projectLocation" />
   </mat-form-field>
   <!-- TODO(FP): this throws an error in the console -->
   <!-- <mat-form-field>

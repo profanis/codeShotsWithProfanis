@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Field, form, minLength, required } from '@angular/forms/signals';
+import { FormField, form, minLength, required } from '@angular/forms/signals';
 import { compatForm } from '@angular/forms/signals/compat';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -43,12 +43,12 @@ export interface RegisterFormModel {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    Field,
+    FormField,
     MatSelectModule,
     MatOptionModule,
     MatRadioModule,
     MatCard,
-
+    JsonPipe,
     ReactiveFormsModule,
   ],
 })
