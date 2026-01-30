@@ -1,0 +1,55 @@
+<mat-card class="card__container">
+  <form
+    class="register-form"
+    autocomplete="off"
+    (submit)="$event.preventDefault(); submitForm()"
+  >
+    <div class="form-fields">
+      <h2>Register</h2>
+
+      <!-- {{ usernameResource.value() | json }} -->
+
+      <!-- Department -->
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Department</mat-label>
+        <input matInput type="text" [formField]="userForm.department" />
+      </mat-form-field>
+
+      <!-- Username -->
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>User Name</mat-label>
+
+        <div matSuffix>
+          @if (userForm.userName().dirty() && !userForm.userName().pending()) {
+            <mat-icon
+              [class.error]="userNameHasAsyncError()"
+              [class.success]="!userNameHasAsyncError()"
+            >
+              {{ userNameHasAsyncError() ? "error" : "check" }}
+            </mat-icon>
+          }
+          @if (userForm.userName().pending()) {
+            <mat-progress-spinner mode="indeterminate" diameter="20" />
+          }
+        </div>
+
+        <input matInput type="text" [formField]="userForm.userName" />
+      </mat-form-field>
+
+      <!-- Age -->
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" [formField]="userForm.age" />
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="userForm().invalid()"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-card>
