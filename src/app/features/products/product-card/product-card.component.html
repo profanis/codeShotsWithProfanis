@@ -1,0 +1,17 @@
+<mat-card class="product-card">
+  <img
+    class="product-image"
+    [ngSrc]="product().imageUrl"
+    [alt]="product().title"
+    width="400"
+    height="300"
+    [priority]="priority()"
+  />
+  <mat-card-header>
+    <mat-card-title>{{ product().title }}</mat-card-title>
+    <mat-card-subtitle>{{ product().price | currency }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="description">{{ product().description }}</p>
+  </mat-card-content>
+</mat-card>

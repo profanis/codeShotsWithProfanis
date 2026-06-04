@@ -1,0 +1,54 @@
+<div class="product-list">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search products</mat-label>
+    <input
+      matInput
+      type="text"
+      [value]="rawSearchTerm()"
+      (input)="onSearchInput($event.target.value)"
+      placeholder="Search by title or description..."
+    />
+  </mat-form-field>
+
+  <!-- @if (productsResource.error()) {
+    <div class="error-message">
+      <p>
+        Failed to load products. Please check the server is running and try
+        again.
+      </p>
+    </div>
+  } -->
+
+  @if (productsResource.isLoading() && productsResource.value()) {
+    <div class="loading-container">
+      <p>Loading products...</p>
+      <!-- <mat-progress-bar class="progress-bar" [mode]="'indeterminate'" /> -->
+      <mat-spinner class="spinner" diameter="20" />
+    </div>
+  }
+
+  @if (productsResource.hasError()) {
+    <mat-toolbar color="warn" class="error-banner">
+      <span
+        >Something went wrong with your last search. Please refine and try
+        again.</span
+      >
+    </mat-toolbar>
+  }
+
+  @if (productsResource.isLoading() && !productsResource.value()) {
+    <div class="products-grid">
+      @for (skeleton of skeletons; track $index) {
+        <app-product-skeleton-card />
+      }
+    </div>
+  } @else if (productsResource.value()) {
+    <div class="products-grid">
+      @for (product of productsResource.value() ?? []; track product.id) {
+        <app-product-card [product]="product" [priority]="$index < 6" />
+      } @empty {
+        <p class="no-results">No products found for "{{ rawSearchTerm() }}".</p>
+      }
+    </div>
+  }
+</div>

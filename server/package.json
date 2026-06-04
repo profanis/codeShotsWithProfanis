@@ -1,0 +1,13 @@
+{
+  "name": "products-mock-server",
+  "version": "1.0.0",
+  "description": "Mock REST API for the Angular Products feature",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
